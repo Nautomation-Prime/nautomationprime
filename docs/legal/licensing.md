@@ -36,9 +36,9 @@ Educational content on nautomationprime.io is licensed under:
 
 This includes:
 
-- [Beginner Tutorials](../tutorials/beginner/index.md)
-- [Intermediate Tutorials](../tutorials/intermediate/index.md)
-- [Technical Deep Dives](../deep-dives/index.md)
+- [Beginner Tutorials](../foundation/tutorials/beginner/index.md)
+- [Intermediate Tutorials](../foundation/tutorials/intermediate/index.md)
+- [Technical Deep Dives](../foundation/deep-dives/index.md)
 - How-to guides and walkthroughs
 - Learning resources and educational examples
 

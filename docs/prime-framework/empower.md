@@ -268,10 +268,10 @@ We provide pathways for continued learning:
 
 **Curated Learning Path:**
 
-1. **Start Here:** [Nautomation Prime Beginner Tutorials](../tutorials/beginner/index.md)
-2. **Next Steps:** [Intermediate Topics](../tutorials/intermediate/index.md)
-3. **Advanced:** [Expert-Level Patterns](../tutorials/expert/index.md)
-4. **Deep Dives:** [Real-World Scripts](../deep-dives/index.md)
+1. **Start Here:** [Nautomation Prime Beginner Tutorials](../foundation/tutorials/beginner/index.md)
+2. **Next Steps:** [Intermediate Topics](../foundation/tutorials/intermediate/index.md)
+3. **Advanced:** [Expert-Level Patterns](../foundation/tutorials/expert/index.md)
+4. **Deep Dives:** [Real-World Scripts](../foundation/deep-dives/index.md)
 
 **External Resources:**
 
@@ -443,7 +443,7 @@ Capability is not the same as effort. This ladder describes what your automation
 
 **Post-PRIME, you're at Level 2–3.**
 
-Levels 4 and 5 are a governance problem before they are a technology problem. See [Governed AI for Network Operations](../tutorials/governed-ai-network-operations/index.md) for what has to be true before an agent touches your estate.
+Levels 4 and 5 are a governance problem before they are a technology problem. See [Governed AI for Network Operations](../foundation/tutorials/governed-ai-network-operations/index.md) for what has to be true before an agent touches your estate.
 
 ---
 
@@ -453,7 +453,7 @@ PRIME ends when your team owns the automation. The automation does not end there
 
 That is a separate discipline from delivery, and skipping it is how organisations end up with a portfolio nobody can inventory: scheduled jobs whose purpose is unclear, services whose owner has left, credentials belonging to scripts that stopped being useful two years ago.
 
-The [Automation Service Lifecycle](../tutorials/production-grade-network-automation-principles/automation-service-lifecycle.md) covers what to put in place: three named owners per service rather than "the automation team", decision gates before you build and after you ship, a minimum service record, and a retirement path.
+The [Automation Service Lifecycle](../foundation/tutorials/production-grade-network-automation-principles/automation-service-lifecycle.md) covers what to put in place: three named owners per service rather than "the automation team", decision gates before you build and after you ship, a minimum service record, and a retirement path.
 
 If you adopt one thing from it, adopt the three owners. It takes an afternoon and it is what makes team ownership survive a resignation.
 
@@ -517,7 +517,7 @@ For organisations with existing automation needing knowledge transfer:
 
 - **[PRIME Framework Overview](./index.md)** — See how all five stages work together
 - **[Previous Stage: Measure](./measure.md)** — Proving the value we've delivered
-- **[Beginner Tutorials](../tutorials/beginner/index.md)** — Start building Python skills
+- **[Beginner Tutorials](../foundation/tutorials/beginner/index.md)** — Start building Python skills
 - **[Services](../services.md)** — Explore engagement options
 - **[Request Discovery Call](../contact.md)** — Discuss your automation needs
 

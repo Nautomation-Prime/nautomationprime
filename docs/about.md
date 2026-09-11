@@ -96,24 +96,25 @@ The framework is built on the **[PRIME Philosophy](./prime-framework/philosophy.
 
 We provide education, premium automation tools, and professional services—all guided by the **[PRIME Framework](./prime-framework/index.md)** and **PRIME Philosophy**.
 
-### 🎓 Education & Tutorials
+### 🎓 The Nautomation Prime Foundation
 
-Free, comprehensive guides that teach network automation through real-world Cisco use cases:
+Our free education arm. All tutorials, deep dives, and production-grade guidance live under the **[Nautomation Prime Foundation](./foundation/index.md)** and teach network automation through real-world Cisco use cases:
 
-- **[Tutorials](./tutorials/index.md):** Step-by-step practical scripts for beginners, intermediate, and expert levels
-- **[Deep Dives](./deep-dives/index.md):** Production-grade code walkthroughs with line-by-line explanations
+- **[Tutorials](./foundation/tutorials/index.md):** Step-by-step practical scripts for beginners, intermediate, and expert levels
+- **[Deep Dives](./foundation/deep-dives/index.md):** Production-grade code walkthroughs with line-by-line explanations
+- **[Free & Low-Cost Services for Charities](./foundation/charity-services.md):** Cisco and general networking engineering, infrastructure advice, and Python-based automation for registered UK charities and CICs
 - **Learning Path:** From first Netmiko script to advanced Nornir parallelisation
 
-Every script is explained line-by-line, every design decision documented.
+Every script is explained line-by-line, every design decision documented, and every piece of Foundation content stays free to access.
 
 ### 🛠️ Premium Automation Tools
 
 Production-hardened Python tools for common network automation tasks, available to buy as-is or customised to your environment:
 
-- [CDP Network Audit](./deep-dives/cdp-audit.md)
-- [Access Switch Port Audit](./deep-dives/access-switch-audit.md)
+- [CDP Network Audit](./foundation/deep-dives/cdp-audit.md)
+- [Access Switch Port Audit](./foundation/deep-dives/access-switch-audit.md)
 - [Zero Touch Provisioning (ZTP)](./coming-soon/cisco-ios-xe-ztp.md) — Coming Soon
-- [IOS-XE Upgrade Orchestrator](./deep-dives/ios-xe-upgrade-orchestrator.md) — Deep Dive
+- [IOS-XE Upgrade Orchestrator](./foundation/deep-dives/ios-xe-upgrade-orchestrator.md) — Deep Dive
 
 Each tool can be purchased on request, with optional customisation — see the [Script Library](./scripts/index.md) for pricing and details.
 
@@ -209,7 +210,7 @@ Browse the [Script Library](scripts/index.md) for ready-to-use automation tools 
 
 ### Learn Network Automation
 
-Explore our [Technical Deep Dives](deep-dives/index.md) for comprehensive guides.
+Explore our [Technical Deep Dives](foundation/deep-dives/index.md) for comprehensive guides.
 
 ### Request Custom Solutions
 
@@ -236,6 +237,7 @@ Found a bug, need support, or have a feature request for one of our tools? [Get 
 - [Disclaimer](legal/disclaimer.md)
 - [Licensing](legal/licensing.md)
 - [Brand & Logo Usage](legal/brand.md)
+- [Foundation Legal Status & Governance](legal/foundation-status.md)
 
 ---
 

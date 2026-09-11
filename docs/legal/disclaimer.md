@@ -48,3 +48,7 @@ Christopher Davies trading as Nautomation Prime assumes **no liability whatsoeve
 - Any reliance placed on the accuracy or completeness of materials provided  
 
 You acknowledge that network automation carries inherent risks and that you are solely responsible for testing, validating, and deploying any code or configuration in your environment.
+
+## 6. Nautomation Prime Foundation
+
+Free educational content published under the **Nautomation Prime Foundation** is subject to this same disclaimer in full. The Foundation is not a registered charity or Community Interest Company — see [Foundation Legal Status & Governance](foundation-status.md) for its current legal position. Free and discounted engagements delivered to charities under the [Charity Services](../foundation/charity-services.md) offer carry an additional, specific liability cap set out on that page.

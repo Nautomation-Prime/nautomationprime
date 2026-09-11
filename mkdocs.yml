@@ -51,6 +51,8 @@ extra:
       find what they're searching for. With your consent, you're helping us to
       make our documentation better.
   footer_links:
+    - title: "Nautomation Prime Foundation"
+      url: "/foundation/"
     - title: "Privacy Policy"
       url: "/legal/privacy-policy/"
     - title: "Terms of Use"
@@ -61,6 +63,8 @@ extra:
       url: "/legal/licensing/"
     - title: "Brand Usage"
       url: "/legal/brand/"
+    - title: "Foundation Status"
+      url: "/legal/foundation-status/"
   social:
     - icon: fontawesome/brands/linkedin
       link: https://www.linkedin.com/company/nautomationprime
@@ -117,90 +121,92 @@ markdown_extensions:
 
 nav:
   - Home: index.md
-  - Learn:
-    - Overview: resources.md
-    - Getting Started: getting-started.md
+  - Nautomation Prime Foundation:
+    - The Foundation: foundation/index.md
+    - Getting Started: foundation/getting-started.md
+    - Learning Hub: foundation/resources.md
     - Tutorials:
-      - tutorials/index.md
+      - foundation/tutorials/index.md
       - Beginner Tutorials:
-        - tutorials/beginner/index.md
-        - Multi-Device Config Backup: tutorials/beginner/multi-device-config-backup.md
-        - Multi-Device Show Command: tutorials/beginner/multi-device-show-command.md
-        - Netmiko Show Command to Excel: tutorials/beginner/netmiko-show-command-to-excel.md
+        - foundation/tutorials/beginner/index.md
+        - Multi-Device Config Backup: foundation/tutorials/beginner/multi-device-config-backup.md
+        - Multi-Device Show Command: foundation/tutorials/beginner/multi-device-show-command.md
+        - Netmiko Show Command to Excel: foundation/tutorials/beginner/netmiko-show-command-to-excel.md
       - Intermediate Tutorials:
-        - tutorials/intermediate/index.md
-        - YAML Data Modelling: tutorials/intermediate/yaml-data-modeling-network-automation.md
-        - JSON Data Handling: tutorials/intermediate/json-data-handling-network-automation.md
-        - Jinja2 Configuration Templates: tutorials/intermediate/jinja2-configuration-templates.md
-        - Decorators for Network Automation: tutorials/intermediate/decorators-network-automation.md
-        - PyATS Fundamentals: tutorials/intermediate/pyats-fundamentals.md
-        - PyATS Network Validation: tutorials/intermediate/pyats-network-validation.md
-        - Building Reliable Automation with PyATS: tutorials/intermediate/building-reliable-automation-with-pyats.md
-        - Why Nornir: tutorials/intermediate/why-nornir.md
-        - Nornir Fundamentals: tutorials/intermediate/nornir-fundamentals.md
-        - Enterprise Config Backup Nornir: tutorials/intermediate/enterprise-config-backup-nornir.md
-        - Advanced Nornir Patterns: tutorials/intermediate/advanced-nornir-patterns.md
-        - Testing Network Automation Scripts: tutorials/intermediate/testing-network-automation.md
-        - Credential Management for Network Automation: tutorials/intermediate/credential-management-network-automation.md
-        - Error Recovery and Rollback: tutorials/intermediate/error-recovery-rollback-network-automation.md
-        - State Management and Idempotency: tutorials/intermediate/state-management-idempotency-network-automation.md
-        - Structured Logging for Network Automation: tutorials/intermediate/structured-logging-network-automation.md
-        - Health Checks and Pre-Flight Validation: tutorials/intermediate/health-checks-pre-flight-validation.md
+        - foundation/tutorials/intermediate/index.md
+        - YAML Data Modelling: foundation/tutorials/intermediate/yaml-data-modeling-network-automation.md
+        - JSON Data Handling: foundation/tutorials/intermediate/json-data-handling-network-automation.md
+        - Jinja2 Configuration Templates: foundation/tutorials/intermediate/jinja2-configuration-templates.md
+        - Decorators for Network Automation: foundation/tutorials/intermediate/decorators-network-automation.md
+        - PyATS Fundamentals: foundation/tutorials/intermediate/pyats-fundamentals.md
+        - PyATS Network Validation: foundation/tutorials/intermediate/pyats-network-validation.md
+        - Building Reliable Automation with PyATS: foundation/tutorials/intermediate/building-reliable-automation-with-pyats.md
+        - Why Nornir: foundation/tutorials/intermediate/why-nornir.md
+        - Nornir Fundamentals: foundation/tutorials/intermediate/nornir-fundamentals.md
+        - Enterprise Config Backup Nornir: foundation/tutorials/intermediate/enterprise-config-backup-nornir.md
+        - Advanced Nornir Patterns: foundation/tutorials/intermediate/advanced-nornir-patterns.md
+        - Testing Network Automation Scripts: foundation/tutorials/intermediate/testing-network-automation.md
+        - Credential Management for Network Automation: foundation/tutorials/intermediate/credential-management-network-automation.md
+        - Error Recovery and Rollback: foundation/tutorials/intermediate/error-recovery-rollback-network-automation.md
+        - State Management and Idempotency: foundation/tutorials/intermediate/state-management-idempotency-network-automation.md
+        - Structured Logging for Network Automation: foundation/tutorials/intermediate/structured-logging-network-automation.md
+        - Health Checks and Pre-Flight Validation: foundation/tutorials/intermediate/health-checks-pre-flight-validation.md
       - Expert Tutorials:
-        - tutorials/expert/index.md
-        - Circuit Breakers and Backpressure: tutorials/expert/circuit-breakers-backpressure-network-automation.md
-        - Dependency Management and Task Orchestration: tutorials/expert/dependency-ordering-task-orchestration.md
-        - Incident Response Automation: tutorials/expert/incident-response-automation.md
-        - Nornir + PyATS Integration: tutorials/expert/nornir-pyats-integration.md
-        - Asyncio for Network Automation: tutorials/expert/asyncio-network-automation.md
-        - Secure Credential Vaulting: tutorials/expert/secure-credential-vaulting.md
-        - DevOps & Observability: tutorials/expert/devops-observability-network-automation.md
-        - Tool Ecosystem Integration: tutorials/expert/tool-ecosystem-integration.md
+        - foundation/tutorials/expert/index.md
+        - Circuit Breakers and Backpressure: foundation/tutorials/expert/circuit-breakers-backpressure-network-automation.md
+        - Dependency Management and Task Orchestration: foundation/tutorials/expert/dependency-ordering-task-orchestration.md
+        - Incident Response Automation: foundation/tutorials/expert/incident-response-automation.md
+        - Nornir + PyATS Integration: foundation/tutorials/expert/nornir-pyats-integration.md
+        - Asyncio for Network Automation: foundation/tutorials/expert/asyncio-network-automation.md
+        - Secure Credential Vaulting: foundation/tutorials/expert/secure-credential-vaulting.md
+        - DevOps & Observability: foundation/tutorials/expert/devops-observability-network-automation.md
+        - Tool Ecosystem Integration: foundation/tutorials/expert/tool-ecosystem-integration.md
     - Production-Grade Network Automation Principles:
-      - tutorials/production-grade-network-automation-principles/index.md
-      - Validating Device Identity Before Automation Runs: tutorials/production-grade-network-automation-principles/validating-device-identity-before-automation-runs.md
-      - Pre-Flight Checks - Failing Fast Before Making Changes: tutorials/production-grade-network-automation-principles/pre-flight-checks-failing-fast-before-making-changes.md
-      - Trust Boundaries Around Your Source of Truth: tutorials/production-grade-network-automation-principles/trust-boundaries-around-your-source-of-truth.md
-      - Detecting and Handling Configuration Drift Safely: tutorials/production-grade-network-automation-principles/detecting-and-handling-configuration-drift-safely.md
-      - Real-World Idempotency in Network Automation: tutorials/production-grade-network-automation-principles/real-world-idempotency-in-network-automation.md
-      - Scoping Automation to Reduce Blast Radius: tutorials/production-grade-network-automation-principles/scoping-automation-to-reduce-blast-radius.md
-      - Designing Automation That Can Safely Fail: tutorials/production-grade-network-automation-principles/designing-automation-that-can-safely-fail.md
-      - Rollback Strategies - What Works and What Doesn't: tutorials/production-grade-network-automation-principles/rollback-strategies-what-works-and-what-doesnt.md
-      - Separating Read and Write Phases in Automation Workflows: tutorials/production-grade-network-automation-principles/separating-read-and-write-phases.md
-      - Making Automation Output Operator-Friendly: tutorials/production-grade-network-automation-principles/making-automation-output-operator-friendly.md
-      - Building Audit-Ready Automation: tutorials/production-grade-network-automation-principles/building-audit-ready-automation.md
-      - Secrets and Credentials in Enterprise Automation: tutorials/production-grade-network-automation-principles/secrets-and-credentials-in-enterprise-automation.md
-      - Human-in-the-Loop Automation Design: tutorials/production-grade-network-automation-principles/human-in-the-loop-automation-design.md
-      - Knowing When Not to Automate: tutorials/production-grade-network-automation-principles/knowing-when-not-to-automate.md
-      - Executive Summary for Leadership: tutorials/production-grade-network-automation-principles/executive-summary.md
-      - Program Charter for Production-Grade Automation: tutorials/production-grade-network-automation-principles/program-charter.md
-      - Enterprise Control Matrix: tutorials/production-grade-network-automation-principles/enterprise-control-matrix.md
-      - Exception and Waiver Process: tutorials/production-grade-network-automation-principles/exception-and-waiver-process.md
-      - Automation Service Lifecycle: tutorials/production-grade-network-automation-principles/automation-service-lifecycle.md
-      - Implementation Roadmap (30/60/90 Days): tutorials/production-grade-network-automation-principles/implementation-roadmap-30-60-90-days.md
-      - Operator Review Worksheet: tutorials/production-grade-network-automation-principles/operator-review-worksheet.md
+      - foundation/tutorials/production-grade-network-automation-principles/index.md
+      - Validating Device Identity Before Automation Runs: foundation/tutorials/production-grade-network-automation-principles/validating-device-identity-before-automation-runs.md
+      - Pre-Flight Checks - Failing Fast Before Making Changes: foundation/tutorials/production-grade-network-automation-principles/pre-flight-checks-failing-fast-before-making-changes.md
+      - Trust Boundaries Around Your Source of Truth: foundation/tutorials/production-grade-network-automation-principles/trust-boundaries-around-your-source-of-truth.md
+      - Detecting and Handling Configuration Drift Safely: foundation/tutorials/production-grade-network-automation-principles/detecting-and-handling-configuration-drift-safely.md
+      - Real-World Idempotency in Network Automation: foundation/tutorials/production-grade-network-automation-principles/real-world-idempotency-in-network-automation.md
+      - Scoping Automation to Reduce Blast Radius: foundation/tutorials/production-grade-network-automation-principles/scoping-automation-to-reduce-blast-radius.md
+      - Designing Automation That Can Safely Fail: foundation/tutorials/production-grade-network-automation-principles/designing-automation-that-can-safely-fail.md
+      - Rollback Strategies - What Works and What Doesn't: foundation/tutorials/production-grade-network-automation-principles/rollback-strategies-what-works-and-what-doesnt.md
+      - Separating Read and Write Phases in Automation Workflows: foundation/tutorials/production-grade-network-automation-principles/separating-read-and-write-phases.md
+      - Making Automation Output Operator-Friendly: foundation/tutorials/production-grade-network-automation-principles/making-automation-output-operator-friendly.md
+      - Building Audit-Ready Automation: foundation/tutorials/production-grade-network-automation-principles/building-audit-ready-automation.md
+      - Secrets and Credentials in Enterprise Automation: foundation/tutorials/production-grade-network-automation-principles/secrets-and-credentials-in-enterprise-automation.md
+      - Human-in-the-Loop Automation Design: foundation/tutorials/production-grade-network-automation-principles/human-in-the-loop-automation-design.md
+      - Knowing When Not to Automate: foundation/tutorials/production-grade-network-automation-principles/knowing-when-not-to-automate.md
+      - Executive Summary for Leadership: foundation/tutorials/production-grade-network-automation-principles/executive-summary.md
+      - Program Charter for Production-Grade Automation: foundation/tutorials/production-grade-network-automation-principles/program-charter.md
+      - Enterprise Control Matrix: foundation/tutorials/production-grade-network-automation-principles/enterprise-control-matrix.md
+      - Exception and Waiver Process: foundation/tutorials/production-grade-network-automation-principles/exception-and-waiver-process.md
+      - Automation Service Lifecycle: foundation/tutorials/production-grade-network-automation-principles/automation-service-lifecycle.md
+      - Implementation Roadmap (30/60/90 Days): foundation/tutorials/production-grade-network-automation-principles/implementation-roadmap-30-60-90-days.md
+      - Operator Review Worksheet: foundation/tutorials/production-grade-network-automation-principles/operator-review-worksheet.md
     - Governed AI for Network Operations:
-      - tutorials/governed-ai-network-operations/index.md
-      - AI Risk Classification: tutorials/governed-ai-network-operations/ai-risk-classification.md
-      - Why Your Agent Must Not Have an execute_command Tool: tutorials/governed-ai-network-operations/why-your-agent-must-not-have-execute-command.md
-      - From Script to Tool: tutorials/governed-ai-network-operations/from-script-to-tool.md
-      - Agent Review Checklist: tutorials/governed-ai-network-operations/agent-review-checklist.md
+      - foundation/tutorials/governed-ai-network-operations/index.md
+      - AI Risk Classification: foundation/tutorials/governed-ai-network-operations/ai-risk-classification.md
+      - Why Your Agent Must Not Have an execute_command Tool: foundation/tutorials/governed-ai-network-operations/why-your-agent-must-not-have-execute-command.md
+      - From Script to Tool: foundation/tutorials/governed-ai-network-operations/from-script-to-tool.md
+      - Agent Review Checklist: foundation/tutorials/governed-ai-network-operations/agent-review-checklist.md
     - Deep Dives:
-      - deep-dives/index.md
-      - Access Switch Audit: deep-dives/access-switch-audit.md
-      - CDP Audit: deep-dives/cdp-audit.md
-      - Cisco Compliance Audit: deep-dives/cisco-compliance-audit.md
-      - Cisco Config Generator: deep-dives/cisco-config-generator.md
-      - IOS XE Upgrade Orchestrator: deep-dives/ios-xe-upgrade-orchestrator.md
-    - Scripts: scripts/index.md
-    - Coming Soon:
-      - coming-soon/index.md
-      - Cisco IOS XE ZTP: coming-soon/cisco-ios-xe-ztp.md
-      - ZTP Automation Platform: coming-soon/ztp-automation-platform.md
+      - foundation/deep-dives/index.md
+      - Access Switch Audit: foundation/deep-dives/access-switch-audit.md
+      - CDP Audit: foundation/deep-dives/cdp-audit.md
+      - Cisco Compliance Audit: foundation/deep-dives/cisco-compliance-audit.md
+      - Cisco Config Generator: foundation/deep-dives/cisco-config-generator.md
+      - IOS XE Upgrade Orchestrator: foundation/deep-dives/ios-xe-upgrade-orchestrator.md
+    - Free & Low-Cost Services for Charities: foundation/charity-services.md
   - Services:
     - Overview: services.md
     - How We Work: how-we-work.md
     - Contact & Discovery: contact.md
+    - Script Library: scripts/index.md
+    - Coming Soon:
+      - coming-soon/index.md
+      - Cisco IOS XE ZTP: coming-soon/cisco-ios-xe-ztp.md
+      - ZTP Automation Platform: coming-soon/ztp-automation-platform.md
     - For Small & Medium Businesses:
       - smb/index.md
       - smb/services.md
@@ -229,6 +235,7 @@ nav:
           - legal/licensing.md
           - legal/privacy-policy.md
           - legal/terms-of-use.md
+          - legal/foundation-status.md
 
 plugins:
   - mermaid2

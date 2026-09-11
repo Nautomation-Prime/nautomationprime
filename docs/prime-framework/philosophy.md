@@ -280,7 +280,7 @@ But if you believe automation should be **transparent, measurable, owned by your
 ## Philosophy Links to Practice
 
 - **Want to see the philosophy in action?** → [PRIME Framework Overview](./index.md)
-- **Understand why these principles matter?** → [Production-Grade Network Automation Principles](../tutorials/production-grade-network-automation-principles/index.md)
+- **Understand why these principles matter?** → [Production-Grade Network Automation Principles](../foundation/tutorials/production-grade-network-automation-principles/index.md)
 - **Ready to apply this approach?** → [How We Work](../how-we-work.md)
 - **Explore the first stage?** → [Pinpoint: Identify High-Impact Opportunities](./pinpoint.md)
 

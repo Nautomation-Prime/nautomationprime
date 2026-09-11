@@ -10,9 +10,9 @@
 {{ page.content }}
 {% if page and page.file and page.file.src_path %}
   {% set src = page.file.src_path %}
-  {% if src.startswith("tutorials/") and not src.endswith("/index.md") %}
+  {% if src.startswith("foundation/tutorials/") and not src.endswith("/index.md") %}
     {% include "partials/learning-cta.html" %}
-  {% elif src.startswith("deep-dives/") and not src.endswith("/index.md") %}
+  {% elif src.startswith("foundation/deep-dives/") and not src.endswith("/index.md") %}
     {% include "partials/tool-cta.html" %}
   {% endif %}
 {% endif %}

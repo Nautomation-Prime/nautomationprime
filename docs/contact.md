@@ -56,6 +56,12 @@ Use this page if you want to discuss an automation challenge, request a discover
 
     [Ask about SMB packages](mailto:enquiries@nautomationprime.io?subject=SMB%20Automation%20Package%20Enquiry)
 
+-   ### Charity support
+
+    Best if you run a registered UK charity or CIC and want to apply for free or low-cost Cisco and general networking engineering, infrastructure advice, or Python-based automation through the Nautomation Prime Foundation.
+
+    [Apply for charity support](mailto:enquiries@nautomationprime.io?subject=Charity%20Support%20Application)
+
 -   ### LinkedIn
 
     Best if you want an additional trust signal, prefer an initial social contact, or want to review updates before reaching out.

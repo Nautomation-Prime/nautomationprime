@@ -44,7 +44,7 @@ Welcome to the **Nautomation Prime Script Library**. Here you'll find production
 
 **Pricing:** £795 as-is (unmodified) · £2,000–£5,000 customised
 
-[📖 View Deep Dive Documentation](../deep-dives/cdp-audit.md) | [💬 Request this tool](../contact.md)
+[📖 View Deep Dive Documentation](../foundation/deep-dives/cdp-audit.md) | [💬 Request this tool](../contact.md)
 
 ---
 
@@ -63,7 +63,7 @@ Welcome to the **Nautomation Prime Script Library**. Here you'll find production
 
 **Pricing:** £795 as-is (unmodified) · £2,000–£5,000 customised
 
-[📖 View Deep Dive Documentation](../deep-dives/access-switch-audit.md) | [💬 Request this tool](../contact.md)
+[📖 View Deep Dive Documentation](../foundation/deep-dives/access-switch-audit.md) | [💬 Request this tool](../contact.md)
 
 ---
 
@@ -85,7 +85,7 @@ Welcome to the **Nautomation Prime Script Library**. Here you'll find production
 
 **Pricing:** £1,495 as-is (unmodified) · £3,500–£8,000 customised
 
-[📖 View Deep Dive Documentation](../deep-dives/cisco-compliance-audit.md) | [💬 Request this tool](../contact.md)
+[📖 View Deep Dive Documentation](../foundation/deep-dives/cisco-compliance-audit.md) | [💬 Request this tool](../contact.md)
 
 ---
 
@@ -105,7 +105,7 @@ Welcome to the **Nautomation Prime Script Library**. Here you'll find production
 
 **Pricing:** £595 as-is (unmodified) · £1,500–£4,000 customised
 
-[📖 View Deep Dive Documentation](../deep-dives/cisco-config-generator.md) | [💬 Request this tool](../contact.md)
+[📖 View Deep Dive Documentation](../foundation/deep-dives/cisco-config-generator.md) | [💬 Request this tool](../contact.md)
 
 ---
 
@@ -118,25 +118,25 @@ Welcome to the **Nautomation Prime Script Library**. Here you'll find production
 Start here if you're new to network automation:
 
 1. Learn Python fundamentals (external resources)
-2. Read [Multi-Device Show Command Collection](../tutorials/beginner/multi-device-show-command.md) — learn Netmiko basics
-3. Try [Configuration Backup Tutorial](../tutorials/beginner/multi-device-config-backup.md) — understand backup patterns
-4. Explore [CDP Network Audit Deep Dive](../deep-dives/cdp-audit.md) — see how threading and configuration work at scale
+2. Read [Multi-Device Show Command Collection](../foundation/tutorials/beginner/multi-device-show-command.md) — learn Netmiko basics
+3. Try [Configuration Backup Tutorial](../foundation/tutorials/beginner/multi-device-config-backup.md) — understand backup patterns
+4. Explore [CDP Network Audit Deep Dive](../foundation/deep-dives/cdp-audit.md) — see how threading and configuration work at scale
 
 ### 🛠️ Intermediate Path
 
 Ready to understand production patterns:
 
-1. Read [Nornir Fundamentals](../tutorials/intermediate/nornir-fundamentals.md) — multi-device automation framework
-2. Read [Enterprise Config Backup with Nornir](../tutorials/intermediate/enterprise-config-backup-nornir.md) — scalable patterns
-3. Study [Access Switch Audit Deep Dive](../deep-dives/access-switch-audit.md) — parallel collection and intelligent parsing
-4. Study [CDP Network Audit Deep Dive](../deep-dives/cdp-audit.md) — threading, configuration, and jump hosts
+1. Read [Nornir Fundamentals](../foundation/tutorials/intermediate/nornir-fundamentals.md) — multi-device automation framework
+2. Read [Enterprise Config Backup with Nornir](../foundation/tutorials/intermediate/enterprise-config-backup-nornir.md) — scalable patterns
+3. Study [Access Switch Audit Deep Dive](../foundation/deep-dives/access-switch-audit.md) — parallel collection and intelligent parsing
+4. Study [CDP Network Audit Deep Dive](../foundation/deep-dives/cdp-audit.md) — threading, configuration, and jump hosts
 
 ### 🚀 Advanced Path
 
 Ready to build custom solutions:
 
-1. Review all [Deep Dives](../deep-dives/index.md) for architectural patterns
-2. Study [Cisco Compliance Audit Deep Dive](../deep-dives/cisco-compliance-audit.md) — policy-driven compliance with remediation generation
+1. Review all [Deep Dives](../foundation/deep-dives/index.md) for architectural patterns
+2. Study [Cisco Compliance Audit Deep Dive](../foundation/deep-dives/cisco-compliance-audit.md) — policy-driven compliance with remediation generation
 3. Purchase a tool and customise it for your environment (licensed source included)
 4. Integrate with [PRIME Framework](../prime-framework/index.md) methodology
 5. Contact us for [consulting services](../services.md) on bespoke automation
@@ -250,12 +250,12 @@ For issues, feature requests, or questions about any script:
 
 | Topic | Resources |
 | :--- | :--- |
-| **Network Discovery** | [📖 CDP Network Audit Deep Dive](../deep-dives/cdp-audit.md) • [💬 Request the tool](../contact.md) |
-| **Port & Interface Health** | [📖 Access Switch Audit Deep Dive](../deep-dives/access-switch-audit.md) • [💬 Request the tool](../contact.md) |
-| **Compliance & Governance** | [📖 Cisco Compliance Audit Deep Dive](../deep-dives/cisco-compliance-audit.md) • [💬 Request the tool](../contact.md) |
-| **Configuration Management** | [🎓 Configuration Backup (Beginner)](../tutorials/beginner/multi-device-config-backup.md) • [🎓 Enterprise Backup with Nornir (Intermediate)](../tutorials/intermediate/enterprise-config-backup-nornir.md) |
-| **Data Collection & Reporting** | [🎓 Show Commands to Excel (Beginner)](../tutorials/beginner/netmiko-show-command-to-excel.md) • [🎓 Multi-Device Collection (Beginner)](../tutorials/beginner/multi-device-show-command.md) |
-| **Automation Frameworks** | [🎓 Nornir Fundamentals](../tutorials/intermediate/nornir-fundamentals.md) • [📖 Advanced Patterns](../tutorials/intermediate/advanced-nornir-patterns.md) |
+| **Network Discovery** | [📖 CDP Network Audit Deep Dive](../foundation/deep-dives/cdp-audit.md) • [💬 Request the tool](../contact.md) |
+| **Port & Interface Health** | [📖 Access Switch Audit Deep Dive](../foundation/deep-dives/access-switch-audit.md) • [💬 Request the tool](../contact.md) |
+| **Compliance & Governance** | [📖 Cisco Compliance Audit Deep Dive](../foundation/deep-dives/cisco-compliance-audit.md) • [💬 Request the tool](../contact.md) |
+| **Configuration Management** | [🎓 Configuration Backup (Beginner)](../foundation/tutorials/beginner/multi-device-config-backup.md) • [🎓 Enterprise Backup with Nornir (Intermediate)](../foundation/tutorials/intermediate/enterprise-config-backup-nornir.md) |
+| **Data Collection & Reporting** | [🎓 Show Commands to Excel (Beginner)](../foundation/tutorials/beginner/netmiko-show-command-to-excel.md) • [🎓 Multi-Device Collection (Beginner)](../foundation/tutorials/beginner/multi-device-show-command.md) |
+| **Automation Frameworks** | [🎓 Nornir Fundamentals](../foundation/tutorials/intermediate/nornir-fundamentals.md) • [📖 Advanced Patterns](../foundation/tutorials/intermediate/advanced-nornir-patterns.md) |
 | **Automation Methodology** | [🚀 PRIME Framework](../prime-framework/index.md) • [ℹ️ Philosophy & Approach](../prime-framework/philosophy.md) |
 
 ---

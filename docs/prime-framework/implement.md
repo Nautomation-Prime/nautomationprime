@@ -571,7 +571,7 @@ For organisations with designs but need development help:
 - **[PRIME Framework Overview](./index.md)** — See how all five stages work together
 - **[Previous Stage: Re-engineer](./re-engineer.md)** — Design blueprints implemented here
 - **[Next Stage: Measure](./measure.md)** — Tracking performance and ROI
-- **[View Tutorials](../tutorials/index.md)** — Learn implementation techniques
+- **[View Tutorials](../foundation/tutorials/index.md)** — Learn implementation techniques
 - **[Request Discovery Call](../contact.md)** — Discuss your automation needs
 
 ---

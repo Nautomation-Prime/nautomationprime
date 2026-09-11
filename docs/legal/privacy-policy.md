@@ -28,7 +28,7 @@ This website itself does **not**:
 - Use analytics or tracking  
 - Store logs for profiling or marketing purposes  
 
-When you contact us via email, we receive only the information you choose to include in your message.
+When you contact us via email, we receive only the information you choose to include in your message. This includes applications submitted to the [Nautomation Prime Foundation's charity services offer](../foundation/charity-services.md), where we ask for an organisation name, registration number, contact details, and a description of the request.
 
 ## 2. How Your Data Is Processed
 

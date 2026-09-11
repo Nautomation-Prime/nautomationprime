@@ -199,7 +199,7 @@ No. Engagements can be structured for operational ownership, code-level ownershi
 
 <div class="np-section-link-row">
   <a href="#engagement-tracks-by-technical-capability">See engagement tracks</a>
-  <a href="./tutorials/index.md">Browse learning content</a>
+  <a href="./foundation/tutorials/index.md">Browse learning content</a>
 </div>
 
 </div>
@@ -473,8 +473,8 @@ This review establishes whether an agent, built or planned, can be governed.
 
 **Deliverables:**
 
-- Findings against the published [Agent Review Checklist](./tutorials/governed-ai-network-operations/agent-review-checklist.md), with evidence
-- An [AI risk class](./tutorials/governed-ai-network-operations/ai-risk-classification.md) for each agent, and the controls that class requires
+- Findings against the published [Agent Review Checklist](./foundation/tutorials/governed-ai-network-operations/agent-review-checklist.md), with evidence
+- An [AI risk class](./foundation/tutorials/governed-ai-network-operations/ai-risk-classification.md) for each agent, and the controls that class requires
 - Exception register for gaps you choose to accept, with owners and expiry dates
 - Prioritised remediation plan, sequenced by risk rather than by effort
 - Executive summary suitable for security and change governance review
@@ -483,9 +483,9 @@ This review establishes whether an agent, built or planned, can be governed.
 **Investment:** £3,500 - £6,500
 
 !!! tip "The method is already published"
-    We do not ask you to buy the framework. The [Governed AI for Network Operations](./tutorials/governed-ai-network-operations/index.md) track sets out the standard we assess against, in full and for free. You are engaging us to run it against your environment, argue the hard cases, and produce evidence your security team will accept.
+    We do not ask you to buy the framework. The [Governed AI for Network Operations](./foundation/tutorials/governed-ai-network-operations/index.md) track sets out the standard we assess against, in full and for free. You are engaging us to run it against your environment, argue the hard cases, and produce evidence your security team will accept.
 
-**[Read the standard first →](./tutorials/governed-ai-network-operations/index.md)**
+**[Read the standard first →](./foundation/tutorials/governed-ai-network-operations/index.md)**
 
 ---
 
@@ -546,7 +546,7 @@ The PRIME Framework adapts to your team's Python knowledge. Choose the track tha
 
 **Investment:** Standard PRIME pricing (Empower stage focuses on code-level training)
 
-**Recommended Preparation:** Complete [Beginner Tutorials](tutorials/beginner/index.md) before engagement for maximum value
+**Recommended Preparation:** Complete [Beginner Tutorials](foundation/tutorials/beginner/index.md) before engagement for maximum value
 
 ---
 
@@ -579,7 +579,7 @@ The PRIME Framework adapts to your team's Python knowledge. Choose the track tha
 **Recommended Path:**
 
 1. Complete PRIME engagement (all five stages with operational focus)
-2. Team members complete [Intermediate Tutorials](tutorials/intermediate/index.md) at own pace
+2. Team members complete [Intermediate Tutorials](foundation/tutorials/intermediate/index.md) at own pace
 3. Quarterly "office hours" sessions for code questions and modification guidance
 4. After 6-12 months, team operates independently
 
@@ -1086,9 +1086,9 @@ As a specialised practice, you receive dedicated principal engineer engagement t
 
 While bespoke client work remains confidential, we contribute to the network automation community through:
 
-- Educational content via [tutorials](./tutorials/index.md), [deep dives](./deep-dives/index.md), and structured implementation guides
+- Educational content via [tutorials](./foundation/tutorials/index.md), [deep dives](./foundation/deep-dives/index.md), and structured implementation guides
 - Premium tools delivered with licensed source so your team can audit and maintain them
-- Knowledge sharing through [deep-dive technical articles](./deep-dives/index.md)
+- Knowledge sharing through [deep-dive technical articles](./foundation/deep-dives/index.md)
 
 This commitment to transparency strengthens the ecosystem while protecting client confidentiality.
 
@@ -1275,11 +1275,11 @@ As revenue scales, a percentage is allocated to vetted charities reviewed for tr
 
 ### Educational Resources
 
-**[Production-Grade Principles](./tutorials/production-grade-network-automation-principles/index.md)** — Technical guidance and enterprise operating patterns
+**[Production-Grade Principles](./foundation/tutorials/production-grade-network-automation-principles/index.md)** — Technical guidance and enterprise operating patterns
 
-**[Tutorials & Guides](./tutorials/index.md)** — Hands-on Python automation training
+**[Tutorials & Guides](./foundation/tutorials/index.md)** — Hands-on Python automation training
 
-**[Technical Deep-Dives](./deep-dives/index.md)** — Advanced implementation patterns
+**[Technical Deep-Dives](./foundation/deep-dives/index.md)** — Advanced implementation patterns
 
 ---
 
@@ -1310,7 +1310,7 @@ The PRIME Framework provides the proven methodology, production-grade quality, a
 
 #### Option 2: Download Resources First
 
-Browse our [educational content](./tutorials/index.md) and [deep dives](./deep-dives/index.md) to learn more about network automation approaches before engaging.
+Browse our [educational content](./foundation/tutorials/index.md) and [deep dives](./foundation/deep-dives/index.md) to learn more about network automation approaches before engaging.
 
 ---
 

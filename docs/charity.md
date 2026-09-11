@@ -185,7 +185,13 @@ Our approach is simple:
 
 As Nautomation Prime grows, this page will grow with full transparency.
 
+## Not to Be Confused With the Foundation's Charity Services
+
+This page describes how Nautomation Prime plans to donate a percentage of its own commercial revenue to independently vetted, already-registered external charities. It's a different offering from the **[Nautomation Prime Foundation](./foundation/index.md)**, which already delivers free Cisco network automation education to anyone and free or low-cost engineering time directly to registered UK charities and CICs. See [Free & Low-Cost Services for Charities](./foundation/charity-services.md) if your organisation needs the latter.
+
 ### Related Pages
 
 - [Enterprise Services](./services.md)
 - [About Nautomation Prime](./about.md)
+- [Nautomation Prime Foundation](./foundation/index.md)
+- [Free & Low-Cost Services for Charities](./foundation/charity-services.md)

@@ -25,7 +25,7 @@ Nautomation Prime helps network engineering teams move from manual operations an
 
 <div class="np-action-row" markdown>
 
-[Explore Learn](./resources.md){.md-button .md-button--primary}
+[Explore the Foundation](./foundation/index.md){.md-button .md-button--primary}
 [Explore Services](./services.md){.md-button}
 [Request Discovery Call](./contact.md){.md-button}
 [Meet Christopher Davies](./founder.md){.md-button}
@@ -76,9 +76,9 @@ Nautomation Prime helps network engineering teams move from manual operations an
 
 -   ### Learn
 
-    Build practical Cisco automation capability through tutorials, deep dives, and production-grade engineering guidance.
+    Build practical Cisco automation capability, free, through the Nautomation Prime Foundation's tutorials, deep dives, and production-grade engineering guidance.
 
-    [Go to Learn](./resources.md)
+    [Go to the Foundation](./foundation/index.md)
 
 -   ### Deploy
 
@@ -200,7 +200,7 @@ Whether you're assessing automation opportunities, rebuilding inherited scripts,
 
 [Request Discovery Call](./contact.md){.md-button .md-button--primary}
 [Compare Services](./services.md){.md-button}
-[Start with Getting Started](./getting-started.md){.md-button}
+[Start with Getting Started](./foundation/getting-started.md){.md-button}
 
 </div>
 
@@ -208,6 +208,6 @@ Whether you're assessing automation opportunities, rebuilding inherited scripts,
 
 ## Giving with integrity
 
-We are building Nautomation Prime to create value beyond technology delivery. As the business grows, a percentage of revenue will be donated to carefully vetted charities that demonstrate transparency, responsible spending, ethical governance, and measurable community impact.
+We are building Nautomation Prime to create value beyond technology delivery. As the business grows, a percentage of revenue will be donated to carefully vetted charities that demonstrate transparency, responsible spending, ethical governance, and measurable community impact. Alongside that, the **[Nautomation Prime Foundation](./foundation/index.md)** already offers free network automation education to anyone, and free or low-cost Cisco and general networking engineering, infrastructure advice, and automation services to registered UK charities and CICs today.
 
-[Read the giving policy →](./charity.md)
+[Read the giving policy →](./charity.md) | [Explore the Foundation →](./foundation/index.md)

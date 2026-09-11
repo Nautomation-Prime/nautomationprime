@@ -274,7 +274,7 @@ Move to [Stage 2: Re-engineer Workflows](./re-engineer.md) for your top-priority
 
 ### Option 2: Internal Implementation
 
-Use the roadmap to guide your own internal automation efforts. Our [Tutorials](../tutorials/index.md) and [Deep Dives](../deep-dives/index.md) provide the technical skills.
+Use the roadmap to guide your own internal automation efforts. Our [Tutorials](../foundation/tutorials/index.md) and [Deep Dives](../foundation/deep-dives/index.md) provide the technical skills.
 
 ### Option 3: Assessment Only
 

@@ -433,7 +433,7 @@ graph TD
 
 ??? question "Can I implement the framework myself?"
 
-    Absolutely! The framework isn't proprietary—it's a best-practice methodology. Our [Tutorials](../tutorials/index.md) and [Deep Dives](../deep-dives/index.md) give you the technical skills to follow the PRIME Framework internally.
+    Absolutely! The framework isn't proprietary—it's a best-practice methodology. Our [Tutorials](../foundation/tutorials/index.md) and [Deep Dives](../foundation/deep-dives/index.md) give you the technical skills to follow the PRIME Framework internally.
 
 ??? question "What if my team is new to Python?"
 
@@ -462,7 +462,7 @@ graph TD
     
     See [Services: Engagement Tracks](../services.md#engagement-tracks-by-technical-capability) for detailed breakdowns.
     
-    We also offer [beginner tutorials](../tutorials/beginner/index.md) to help your team build Python foundational skills.
+    We also offer [beginner tutorials](../foundation/tutorials/beginner/index.md) to help your team build Python foundational skills.
 
 ??? question "How do you handle failed automations?"
 
@@ -479,8 +479,8 @@ The PRIME Framework takes the guesswork out of network automation. Whether you'r
 - **[Understand our principles](./philosophy.md)** — Read the PRIME Philosophy
 - **[Request a free discovery call](mailto:enquiries@nautomationprime.io)** to discuss your needs
 - **[Explore our services](../services.md)** to see engagement options and pricing
-- **[Learn the foundations](../tutorials/index.md)** with free tutorials
-- **[Study production tools](../deep-dives/index.md)** to see the framework in action
+- **[Learn the foundations](../foundation/tutorials/index.md)** with free tutorials
+- **[Study production tools](../foundation/deep-dives/index.md)** to see the framework in action
 
 ---
 

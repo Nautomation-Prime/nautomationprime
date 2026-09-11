@@ -78,6 +78,10 @@ You agree not to:
 - Scrape or copy content without permission  
 - Misrepresent yourself as affiliated with Nautomation Prime  
 
-## 7. Changes to Terms
+## 7. The Nautomation Prime Foundation
+
+The **Nautomation Prime Foundation** section of this site is not a registered charity or Community Interest Company; it is operated directly by Christopher Davies trading as Nautomation Prime. See [Foundation Legal Status & Governance](foundation-status.md) for full detail, and the [Charity Services](../foundation/charity-services.md) page for the specific terms and liability cap that apply to free and discounted engagements delivered to charities.
+
+## 8. Changes to Terms
 
 These Terms may be updated at any time. Continued use of the site implies acceptance of any changes.
