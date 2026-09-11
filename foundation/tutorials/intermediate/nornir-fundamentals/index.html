@@ -1,0 +1,4424 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="Master Nornir's core concepts - inventory management, task creation, parallel execution, and result processing with complete working examples." name="description"/>
+<meta content="Christopher Davies" name="author"/>
+<link href="https://www.nautomationprime.io/foundation/tutorials/intermediate/nornir-fundamentals/" rel="canonical"/>
+<link href="../why-nornir/" rel="prev"/>
+<link href="../enterprise-config-backup-nornir/" rel="next"/>
+<link href="../../../../assets/favicon.ico" rel="icon"/>
+<meta content="mkdocs-1.6.1, mkdocs-material-9.7.7" name="generator"/>
+<title>Nornir Fundamentals - Nautomation Prime</title>
+<link href="../../../../assets/stylesheets/main.ec1eaa64.min.css" rel="stylesheet"/>
+<link href="../../../../assets/stylesheets/palette.ab4e12ef.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+<link href="../../../../assets/css/custom.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+</head>
+<body data-md-color-accent="blue" data-md-color-primary="blue" data-md-color-scheme="default" dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#nornir-fundamentals">
+          Skip to content
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+<nav aria-label="Header" class="md-header__inner md-grid">
+<a aria-label="Nautomation Prime" class="md-header__button md-logo" data-md-component="logo" href="../../../.." title="Nautomation Prime">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            Nautomation Prime
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              Nornir Fundamentals
+            
+          </span>
+</div>
+</div>
+</div>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Search" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+</label>
+<nav aria-label="Search" class="md-search__options">
+<a aria-label="Share" class="md-search__icon md-icon" data-clipboard="" data-clipboard-text="" data-md-component="search-share" href="javascript:void(0)" tabindex="-1" title="Share">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"></path></svg>
+</a>
+<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" title="Clear" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+</button>
+</nav>
+<div class="md-search__suggest" data-md-component="search-suggest"></div>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="" tabindex="0">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            Initializing search
+          </div>
+<ol class="md-search-result__list" role="presentation"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md-header__source">
+<a class="md-source" data-md-component="source" href="https://github.com/Nautomation-Prime" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
+</div>
+<div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+</div>
+</nav>
+<nav aria-label="Tabs" class="md-tabs" data-md-component="tabs">
+<div class="md-grid">
+<ul class="md-tabs__list">
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../..">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+</li>
+<li class="md-tabs__item md-tabs__item--active">
+<a class="md-tabs__link" href="../../../">
+          
+  
+  
+    
+  
+  Nautomation Prime Foundation
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../../services/">
+          
+  
+  
+    
+  
+  Services
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../../prime-framework/">
+          
+  
+  
+    
+  
+  PRIME Framework
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../../about/">
+          
+  
+  
+    
+  
+  About
+
+        </a>
+</li>
+</ul>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="Nautomation Prime" class="md-nav__button md-logo" data-md-component="logo" href="../../../.." title="Nautomation Prime">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+</a>
+    Nautomation Prime
+  </label>
+<div class="md-nav__source">
+<a class="md-source" data-md-component="source" href="https://github.com/Nautomation-Prime" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
+</div>
+<div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../..">
+<span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_2" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../">
+<span class="md-ellipsis">
+    
+  
+    Nautomation Prime Foundation
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="true" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Nautomation Prime Foundation
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../getting-started/">
+<span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../resources/">
+<span class="md-ellipsis">
+    
+  
+    Learning Hub
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_2_4" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../">
+<span class="md-ellipsis">
+    
+  
+    Tutorials
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="true" aria-labelledby="__nav_2_4_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_4">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Tutorials
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_4_2" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../beginner/">
+<span class="md-ellipsis">
+    
+  
+    Beginner Tutorials
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_2_4_2" id="__nav_2_4_2_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_2_4_2_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_2_4_2">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Beginner Tutorials
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../beginner/multi-device-config-backup/">
+<span class="md-ellipsis">
+    
+  
+    Multi-Device Config Backup
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../beginner/multi-device-show-command/">
+<span class="md-ellipsis">
+    
+  
+    Multi-Device Show Command
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../beginner/netmiko-show-command-to-excel/">
+<span class="md-ellipsis">
+    
+  
+    Netmiko Show Command to Excel
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_2_4_3" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../">
+<span class="md-ellipsis">
+    
+  
+    Intermediate Tutorials
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_2_4_3" id="__nav_2_4_3_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="true" aria-labelledby="__nav_2_4_3_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_2_4_3">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Intermediate Tutorials
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../yaml-data-modeling-network-automation/">
+<span class="md-ellipsis">
+    
+  
+    YAML Data Modelling
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../json-data-handling-network-automation/">
+<span class="md-ellipsis">
+    
+  
+    JSON Data Handling
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../jinja2-configuration-templates/">
+<span class="md-ellipsis">
+    
+  
+    Jinja2 Configuration Templates
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../decorators-network-automation/">
+<span class="md-ellipsis">
+    
+  
+    Decorators for Network Automation
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../pyats-fundamentals/">
+<span class="md-ellipsis">
+    
+  
+    PyATS Fundamentals
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../pyats-network-validation/">
+<span class="md-ellipsis">
+    
+  
+    PyATS Network Validation
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../building-reliable-automation-with-pyats/">
+<span class="md-ellipsis">
+    
+  
+    Building Reliable Automation with PyATS
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../why-nornir/">
+<span class="md-ellipsis">
+    
+  
+    Why Nornir
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+<span class="md-ellipsis">
+    
+  
+    Nornir Fundamentals
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+<span class="md-ellipsis">
+    
+  
+    Nornir Fundamentals
+  
+
+    
+  </span>
+</a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#nornir-fundamentals">
+<span class="md-ellipsis">
+      
+        Nornir Fundamentals
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#from-sequential-scripts-to-parallel-tasks-the-foundation-of-enterprise-automation">
+<span class="md-ellipsis">
+      
+        "From Sequential Scripts to Parallel Tasks — The Foundation of Enterprise Automation"
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#what-youll-learn">
+<span class="md-ellipsis">
+      
+        🎯 What You'll Learn
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#prerequisites">
+<span class="md-ellipsis">
+      
+        📋 Prerequisites
+      
+    </span>
+</a>
+<nav aria-label="📋 Prerequisites" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#required-knowledge">
+<span class="md-ellipsis">
+      
+        Required Knowledge
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#required-software">
+<span class="md-ellipsis">
+      
+        Required Software
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#required-access">
+<span class="md-ellipsis">
+      
+        Required Access
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#start-simple-your-first-nornir-task-before-we-build-the-full-system">
+<span class="md-ellipsis">
+      
+        ⚡ Start Simple: Your First Nornir Task (Before We Build the Full System)
+      
+    </span>
+</a>
+<nav aria-label="⚡ Start Simple: Your First Nornir Task (Before We Build the Full System)" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#minimal-example-ping-3-devices-in-parallel">
+<span class="md-ellipsis">
+      
+        Minimal Example: Ping 3 Devices in Parallel
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#understanding-task-execution-flow-in-nornir">
+<span class="md-ellipsis">
+      
+        📊 Understanding Task Execution Flow in Nornir
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#nornir-project-structure">
+<span class="md-ellipsis">
+      
+        🏗️ Nornir Project Structure
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#file-1-nornir_configyaml">
+<span class="md-ellipsis">
+      
+        📄 File 1: nornir_config.yaml
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#file-2-inventorydefaultsyaml">
+<span class="md-ellipsis">
+      
+        📄 File 2: inventory/defaults.yaml
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#file-3-inventorygroupsyaml">
+<span class="md-ellipsis">
+      
+        📄 File 3: inventory/groups.yaml
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#file-4-inventoryhostsyaml">
+<span class="md-ellipsis">
+      
+        📄 File 4: inventory/hosts.yaml
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#file-5-tasksbackuppy">
+<span class="md-ellipsis">
+      
+        🔧 File 5: tasks/backup.py
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#file-6-mainpy">
+<span class="md-ellipsis">
+      
+        🚀 File 6: main.py
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#how-to-run">
+<span class="md-ellipsis">
+      
+        🏃 How to Run
+      
+    </span>
+</a>
+<nav aria-label="🏃 How to Run" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#step-1-set-up-your-project">
+<span class="md-ellipsis">
+      
+        Step 1: Set Up Your Project
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#step-2-create-all-files">
+<span class="md-ellipsis">
+      
+        Step 2: Create All Files
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#step-3-edit-inventoryhostsyaml">
+<span class="md-ellipsis">
+      
+        Step 3: Edit inventory/hosts.yaml
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#step-4-run-the-script">
+<span class="md-ellipsis">
+      
+        Step 4: Run the Script
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#step-5-watch-it-run">
+<span class="md-ellipsis">
+      
+        Step 5: Watch It Run
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#understanding-the-code">
+<span class="md-ellipsis">
+      
+        📖 Understanding the Code
+      
+    </span>
+</a>
+<nav aria-label="📖 Understanding the Code" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#the-task-function">
+<span class="md-ellipsis">
+      
+        The Task Function
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#the-task-object">
+<span class="md-ellipsis">
+      
+        The Task Object
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#running-netmiko-through-nornir">
+<span class="md-ellipsis">
+      
+        Running Netmiko Through Nornir
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#the-result-object">
+<span class="md-ellipsis">
+      
+        The Result Object
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#running-tasks-in-mainpy">
+<span class="md-ellipsis">
+      
+        Running Tasks in main.py
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#accessing-results">
+<span class="md-ellipsis">
+      
+        Accessing Results
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#performance-comparison">
+<span class="md-ellipsis">
+      
+        🚀 Performance Comparison
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#customizing-for-your-network">
+<span class="md-ellipsis">
+      
+        🔧 Customizing for Your Network
+      
+    </span>
+</a>
+<nav aria-label="🔧 Customizing for Your Network" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#changing-device-groups">
+<span class="md-ellipsis">
+      
+        Changing Device Groups
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#running-tasks-on-specific-groups">
+<span class="md-ellipsis">
+      
+        Running Tasks on Specific Groups
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#adding-device-variables">
+<span class="md-ellipsis">
+      
+        Adding Device Variables
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#advanced-variations">
+<span class="md-ellipsis">
+      
+        📊 Advanced Variations
+      
+    </span>
+</a>
+<nav aria-label="📊 Advanced Variations" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#add-device-connection-timeout">
+<span class="md-ellipsis">
+      
+        Add Device Connection Timeout
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#different-credentials-per-group">
+<span class="md-ellipsis">
+      
+        Different Credentials Per Group
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#execute-tasks-serially-not-parallel">
+<span class="md-ellipsis">
+      
+        Execute Tasks Serially (Not Parallel)
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#troubleshooting">
+<span class="md-ellipsis">
+      
+        🐛 Troubleshooting
+      
+    </span>
+</a>
+<nav aria-label="🐛 Troubleshooting" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#yaml-parsing-error-in-inventory">
+<span class="md-ellipsis">
+      
+        "YAML parsing error in inventory"
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#connection-failed-hostname-not-reachable">
+<span class="md-ellipsis">
+      
+        "Connection failed: hostname not reachable"
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#no-module-named-nornir_netmiko">
+<span class="md-ellipsis">
+      
+        "No module named nornir_netmiko"
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#typeerror-task-function-must-have-signature-tasktask">
+<span class="md-ellipsis">
+      
+        "TypeError: task function must have signature task(Task)"
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#common-issues-solutions">
+<span class="md-ellipsis">
+      
+        🐛 Common Issues &amp; Solutions
+      
+    </span>
+</a>
+<nav aria-label="🐛 Common Issues &amp; Solutions" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#issue-1-no-module-named-nornir_netmiko">
+<span class="md-ellipsis">
+      
+        Issue 1: "No module named 'nornir_netmiko'"
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#issue-2-connection-refused-or-ssh-timeout">
+<span class="md-ellipsis">
+      
+        Issue 2: "Connection refused" or "SSH timeout"
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#issue-3-yaml-parsing-error-in-inventory">
+<span class="md-ellipsis">
+      
+        Issue 3: "YAML parsing error" in inventory
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#issue-4-connection-pool-exhausted-or-too-many-open-files">
+<span class="md-ellipsis">
+      
+        Issue 4: "Connection pool exhausted" or "too many open files"
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#issue-5-failed-to-acquire-lock-on-device-or-similar-errors">
+<span class="md-ellipsis">
+      
+        Issue 5: "Failed to acquire lock on device" or similar errors
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#basic-testing-validate-your-setup-before-production">
+<span class="md-ellipsis">
+      
+        🧪 Basic Testing: Validate Your Setup Before Production
+      
+    </span>
+</a>
+<nav aria-label="🧪 Basic Testing: Validate Your Setup Before Production" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#test-1-verify-inventory-loads">
+<span class="md-ellipsis">
+      
+        Test 1: Verify Inventory Loads
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#test-2-verify-device-reachability">
+<span class="md-ellipsis">
+      
+        Test 2: Verify Device Reachability
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#test-3-test-command-execution">
+<span class="md-ellipsis">
+      
+        Test 3: Test Command Execution
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#real-world-gotchas-best-practices">
+<span class="md-ellipsis">
+      
+        ⚠️ Real-World Gotchas &amp; Best Practices
+      
+    </span>
+</a>
+<nav aria-label="⚠️ Real-World Gotchas &amp; Best Practices" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#gotcha-1-hardcoded-passwords-are-evil">
+<span class="md-ellipsis">
+      
+        Gotcha 1: Hardcoded Passwords Are Evil
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#gotcha-2-too-many-workers-system-crash">
+<span class="md-ellipsis">
+      
+        Gotcha 2: Too Many Workers = System Crash
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#gotcha-3-failing-device-breaks-the-entire-job">
+<span class="md-ellipsis">
+      
+        Gotcha 3: Failing Device Breaks the Entire Job
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#gotcha-4-logs-are-messy-in-parallel-environment">
+<span class="md-ellipsis">
+      
+        Gotcha 4: Logs Are Messy in Parallel Environment
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#gotcha-5-you-cant-modify-results-after-task-completes">
+<span class="md-ellipsis">
+      
+        Gotcha 5: You Can't Modify Results After Task Completes
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#project-templates-best-practices">
+<span class="md-ellipsis">
+      
+        📦 Project Templates &amp; Best Practices
+      
+    </span>
+</a>
+<nav aria-label="📦 Project Templates &amp; Best Practices" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#recommended-project-layout">
+<span class="md-ellipsis">
+      
+        Recommended Project Layout
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#sample-requirementstxt">
+<span class="md-ellipsis">
+      
+        Sample requirements.txt
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#sample-pyprojecttoml">
+<span class="md-ellipsis">
+      
+        Sample pyproject.toml
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#sample-envexample">
+<span class="md-ellipsis">
+      
+        Sample .env.example
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#sample-gitignore">
+<span class="md-ellipsis">
+      
+        Sample .gitignore
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#initialize-your-environment">
+<span class="md-ellipsis">
+      
+        Initialize Your Environment
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#key-practices">
+<span class="md-ellipsis">
+      
+        Key Practices
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#key-concepts-mastered">
+<span class="md-ellipsis">
+      
+        🎓 Key Concepts Mastered
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#next-steps">
+<span class="md-ellipsis">
+      
+        🎯 Next Steps
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#production-readiness-checklist">
+<span class="md-ellipsis">
+      
+        💡 Production Readiness Checklist
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../enterprise-config-backup-nornir/">
+<span class="md-ellipsis">
+    
+  
+    Enterprise Config Backup Nornir
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../advanced-nornir-patterns/">
+<span class="md-ellipsis">
+    
+  
+    Advanced Nornir Patterns
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../testing-network-automation/">
+<span class="md-ellipsis">
+    
+  
+    Testing Network Automation Scripts
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../credential-management-network-automation/">
+<span class="md-ellipsis">
+    
+  
+    Credential Management for Network Automation
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../error-recovery-rollback-network-automation/">
+<span class="md-ellipsis">
+    
+  
+    Error Recovery and Rollback
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../state-management-idempotency-network-automation/">
+<span class="md-ellipsis">
+    
+  
+    State Management and Idempotency
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../structured-logging-network-automation/">
+<span class="md-ellipsis">
+    
+  
+    Structured Logging for Network Automation
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../health-checks-pre-flight-validation/">
+<span class="md-ellipsis">
+    
+  
+    Health Checks and Pre-Flight Validation
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_4_4" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../expert/">
+<span class="md-ellipsis">
+    
+  
+    Expert Tutorials
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_2_4_4" id="__nav_2_4_4_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_2_4_4_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_2_4_4">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Expert Tutorials
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../expert/circuit-breakers-backpressure-network-automation/">
+<span class="md-ellipsis">
+    
+  
+    Circuit Breakers and Backpressure
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../expert/dependency-ordering-task-orchestration/">
+<span class="md-ellipsis">
+    
+  
+    Dependency Management and Task Orchestration
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../expert/incident-response-automation/">
+<span class="md-ellipsis">
+    
+  
+    Incident Response Automation
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../expert/nornir-pyats-integration/">
+<span class="md-ellipsis">
+    
+  
+    Nornir + PyATS Integration
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../expert/asyncio-network-automation/">
+<span class="md-ellipsis">
+    
+  
+    Asyncio for Network Automation
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../expert/secure-credential-vaulting/">
+<span class="md-ellipsis">
+    
+  
+    Secure Credential Vaulting
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../expert/devops-observability-network-automation/">
+<span class="md-ellipsis">
+    
+  
+    DevOps &amp; Observability
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../expert/tool-ecosystem-integration/">
+<span class="md-ellipsis">
+    
+  
+    Tool Ecosystem Integration
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_5" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../production-grade-network-automation-principles/">
+<span class="md-ellipsis">
+    
+  
+    Production-Grade Network Automation Principles
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_2_5_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_5">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Production-Grade Network Automation Principles
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../production-grade-network-automation-principles/validating-device-identity-before-automation-runs/">
+<span class="md-ellipsis">
+    
+  
+    Validating Device Identity Before Automation Runs
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../production-grade-network-automation-principles/pre-flight-checks-failing-fast-before-making-changes/">
+<span class="md-ellipsis">
+    
+  
+    Pre-Flight Checks - Failing Fast Before Making Changes
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../production-grade-network-automation-principles/trust-boundaries-around-your-source-of-truth/">
+<span class="md-ellipsis">
+    
+  
+    Trust Boundaries Around Your Source of Truth
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../production-grade-network-automation-principles/detecting-and-handling-configuration-drift-safely/">
+<span class="md-ellipsis">
+    
+  
+    Detecting and Handling Configuration Drift Safely
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../production-grade-network-automation-principles/real-world-idempotency-in-network-automation/">
+<span class="md-ellipsis">
+    
+  
+    Real-World Idempotency in Network Automation
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../production-grade-network-automation-principles/scoping-automation-to-reduce-blast-radius/">
+<span class="md-ellipsis">
+    
+  
+    Scoping Automation to Reduce Blast Radius
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../production-grade-network-automation-principles/designing-automation-that-can-safely-fail/">
+<span class="md-ellipsis">
+    
+  
+    Designing Automation That Can Safely Fail
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../production-grade-network-automation-principles/rollback-strategies-what-works-and-what-doesnt/">
+<span class="md-ellipsis">
+    
+  
+    Rollback Strategies - What Works and What Doesn't
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../production-grade-network-automation-principles/separating-read-and-write-phases/">
+<span class="md-ellipsis">
+    
+  
+    Separating Read and Write Phases in Automation Workflows
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../production-grade-network-automation-principles/making-automation-output-operator-friendly/">
+<span class="md-ellipsis">
+    
+  
+    Making Automation Output Operator-Friendly
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../production-grade-network-automation-principles/building-audit-ready-automation/">
+<span class="md-ellipsis">
+    
+  
+    Building Audit-Ready Automation
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../production-grade-network-automation-principles/secrets-and-credentials-in-enterprise-automation/">
+<span class="md-ellipsis">
+    
+  
+    Secrets and Credentials in Enterprise Automation
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../production-grade-network-automation-principles/human-in-the-loop-automation-design/">
+<span class="md-ellipsis">
+    
+  
+    Human-in-the-Loop Automation Design
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../production-grade-network-automation-principles/knowing-when-not-to-automate/">
+<span class="md-ellipsis">
+    
+  
+    Knowing When Not to Automate
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../production-grade-network-automation-principles/executive-summary/">
+<span class="md-ellipsis">
+    
+  
+    Executive Summary for Leadership
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../production-grade-network-automation-principles/program-charter/">
+<span class="md-ellipsis">
+    
+  
+    Program Charter for Production-Grade Automation
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../production-grade-network-automation-principles/enterprise-control-matrix/">
+<span class="md-ellipsis">
+    
+  
+    Enterprise Control Matrix
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../production-grade-network-automation-principles/exception-and-waiver-process/">
+<span class="md-ellipsis">
+    
+  
+    Exception and Waiver Process
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../production-grade-network-automation-principles/automation-service-lifecycle/">
+<span class="md-ellipsis">
+    
+  
+    Automation Service Lifecycle
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../production-grade-network-automation-principles/implementation-roadmap-30-60-90-days/">
+<span class="md-ellipsis">
+    
+  
+    Implementation Roadmap (30/60/90 Days)
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../production-grade-network-automation-principles/operator-review-worksheet/">
+<span class="md-ellipsis">
+    
+  
+    Operator Review Worksheet
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_6" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../governed-ai-network-operations/">
+<span class="md-ellipsis">
+    
+  
+    Governed AI for Network Operations
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_2_6_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_6">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Governed AI for Network Operations
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../governed-ai-network-operations/ai-risk-classification/">
+<span class="md-ellipsis">
+    
+  
+    AI Risk Classification
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../governed-ai-network-operations/why-your-agent-must-not-have-execute-command/">
+<span class="md-ellipsis">
+    
+  
+    Why Your Agent Must Not Have an execute_command Tool
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../governed-ai-network-operations/from-script-to-tool/">
+<span class="md-ellipsis">
+    
+  
+    From Script to Tool
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../governed-ai-network-operations/agent-review-checklist/">
+<span class="md-ellipsis">
+    
+  
+    Agent Review Checklist
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_7" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../deep-dives/">
+<span class="md-ellipsis">
+    
+  
+    Deep Dives
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_2_7_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_7">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Deep Dives
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../deep-dives/access-switch-audit/">
+<span class="md-ellipsis">
+    
+  
+    Access Switch Audit
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../deep-dives/cdp-audit/">
+<span class="md-ellipsis">
+    
+  
+    CDP Audit
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../deep-dives/cisco-compliance-audit/">
+<span class="md-ellipsis">
+    
+  
+    Cisco Compliance Audit
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../deep-dives/cisco-config-generator/">
+<span class="md-ellipsis">
+    
+  
+    Cisco Config Generator
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../deep-dives/ios-xe-upgrade-orchestrator/">
+<span class="md-ellipsis">
+    
+  
+    IOS XE Upgrade Orchestrator
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../charity-services/">
+<span class="md-ellipsis">
+    
+  
+    Free &amp; Low-Cost Services for Charities
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../scripts/">
+<span class="md-ellipsis">
+    
+  
+    Services
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Services
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../services/">
+<span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../how-we-work/">
+<span class="md-ellipsis">
+    
+  
+    How We Work
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../contact/">
+<span class="md-ellipsis">
+    
+  
+    Contact &amp; Discovery
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_5" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../coming-soon/">
+<span class="md-ellipsis">
+    
+  
+    Coming Soon
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_5_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_3_5">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Coming Soon
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../coming-soon/cisco-ios-xe-ztp/">
+<span class="md-ellipsis">
+    
+  
+    Cisco IOS XE ZTP
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../coming-soon/ztp-automation-platform/">
+<span class="md-ellipsis">
+    
+  
+    ZTP Automation Platform
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_6" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../smb/">
+<span class="md-ellipsis">
+    
+  
+    For Small &amp; Medium Businesses
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_6_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_3_6">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    For Small &amp; Medium Businesses
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../smb/services/">
+<span class="md-ellipsis">
+    
+  
+    SMB Automation Packages
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_6_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_6_3" id="__nav_3_6_3_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Automation Packages
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_6_3_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_3_6_3">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Automation Packages
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../smb/packages/automation-assessment/">
+<span class="md-ellipsis">
+    
+  
+    Automation Opportunity Assessment
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../smb/packages/switch-audit-pack/">
+<span class="md-ellipsis">
+    
+  
+    Switch Audit &amp; Compliance Pack
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../smb/packages/ios-xe-upgrade-pack/">
+<span class="md-ellipsis">
+    
+  
+    IOS-XE Upgrade Automation Pack
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../smb/packages/ztp-setup/">
+<span class="md-ellipsis">
+    
+  
+    Zero-Touch Provisioning Setup
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../smb/packages/custom-script-build/">
+<span class="md-ellipsis">
+    
+  
+    Custom Script Build
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../smb/packages/automation-as-a-service/">
+<span class="md-ellipsis">
+    
+  
+    Automation-as-a-Service
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../prime-framework/">
+<span class="md-ellipsis">
+    
+  
+    PRIME Framework
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_4_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_4">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    PRIME Framework
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../prime-framework/philosophy/">
+<span class="md-ellipsis">
+    
+  
+    PRIME Philosophy
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../prime-framework/pinpoint/">
+<span class="md-ellipsis">
+    
+  
+    Pinpoint
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../prime-framework/re-engineer/">
+<span class="md-ellipsis">
+    
+  
+    Re-engineer
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../prime-framework/implement/">
+<span class="md-ellipsis">
+    
+  
+    Implement
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../prime-framework/measure/">
+<span class="md-ellipsis">
+    
+  
+    Measure
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../prime-framework/empower/">
+<span class="md-ellipsis">
+    
+  
+    Empower
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_5" type="checkbox"/>
+<label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_5_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_5">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    About
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../about/">
+<span class="md-ellipsis">
+    
+  
+    About Nautomation Prime
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../founder/">
+<span class="md-ellipsis">
+    
+  
+    Founder
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../charity/">
+<span class="md-ellipsis">
+    
+  
+    Giving With Integrity
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_5_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Legal
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_5_4_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_5_4">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Legal
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../legal/brand/">
+<span class="md-ellipsis">
+    
+  
+    Brand &amp; Logo Usage
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../legal/disclaimer/">
+<span class="md-ellipsis">
+    
+  
+    Disclaimer
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../legal/licensing/">
+<span class="md-ellipsis">
+    
+  
+    Licensing
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../legal/privacy-policy/">
+<span class="md-ellipsis">
+    
+  
+    Privacy Policy
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../legal/terms-of-use/">
+<span class="md-ellipsis">
+    
+  
+    Terms of Use
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../legal/foundation-status/">
+<span class="md-ellipsis">
+    
+  
+    Nautomation Prime Foundation — Legal Status &amp; Governance
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#nornir-fundamentals">
+<span class="md-ellipsis">
+      
+        Nornir Fundamentals
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#from-sequential-scripts-to-parallel-tasks-the-foundation-of-enterprise-automation">
+<span class="md-ellipsis">
+      
+        "From Sequential Scripts to Parallel Tasks — The Foundation of Enterprise Automation"
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#what-youll-learn">
+<span class="md-ellipsis">
+      
+        🎯 What You'll Learn
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#prerequisites">
+<span class="md-ellipsis">
+      
+        📋 Prerequisites
+      
+    </span>
+</a>
+<nav aria-label="📋 Prerequisites" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#required-knowledge">
+<span class="md-ellipsis">
+      
+        Required Knowledge
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#required-software">
+<span class="md-ellipsis">
+      
+        Required Software
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#required-access">
+<span class="md-ellipsis">
+      
+        Required Access
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#start-simple-your-first-nornir-task-before-we-build-the-full-system">
+<span class="md-ellipsis">
+      
+        ⚡ Start Simple: Your First Nornir Task (Before We Build the Full System)
+      
+    </span>
+</a>
+<nav aria-label="⚡ Start Simple: Your First Nornir Task (Before We Build the Full System)" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#minimal-example-ping-3-devices-in-parallel">
+<span class="md-ellipsis">
+      
+        Minimal Example: Ping 3 Devices in Parallel
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#understanding-task-execution-flow-in-nornir">
+<span class="md-ellipsis">
+      
+        📊 Understanding Task Execution Flow in Nornir
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#nornir-project-structure">
+<span class="md-ellipsis">
+      
+        🏗️ Nornir Project Structure
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#file-1-nornir_configyaml">
+<span class="md-ellipsis">
+      
+        📄 File 1: nornir_config.yaml
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#file-2-inventorydefaultsyaml">
+<span class="md-ellipsis">
+      
+        📄 File 2: inventory/defaults.yaml
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#file-3-inventorygroupsyaml">
+<span class="md-ellipsis">
+      
+        📄 File 3: inventory/groups.yaml
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#file-4-inventoryhostsyaml">
+<span class="md-ellipsis">
+      
+        📄 File 4: inventory/hosts.yaml
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#file-5-tasksbackuppy">
+<span class="md-ellipsis">
+      
+        🔧 File 5: tasks/backup.py
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#file-6-mainpy">
+<span class="md-ellipsis">
+      
+        🚀 File 6: main.py
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#how-to-run">
+<span class="md-ellipsis">
+      
+        🏃 How to Run
+      
+    </span>
+</a>
+<nav aria-label="🏃 How to Run" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#step-1-set-up-your-project">
+<span class="md-ellipsis">
+      
+        Step 1: Set Up Your Project
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#step-2-create-all-files">
+<span class="md-ellipsis">
+      
+        Step 2: Create All Files
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#step-3-edit-inventoryhostsyaml">
+<span class="md-ellipsis">
+      
+        Step 3: Edit inventory/hosts.yaml
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#step-4-run-the-script">
+<span class="md-ellipsis">
+      
+        Step 4: Run the Script
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#step-5-watch-it-run">
+<span class="md-ellipsis">
+      
+        Step 5: Watch It Run
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#understanding-the-code">
+<span class="md-ellipsis">
+      
+        📖 Understanding the Code
+      
+    </span>
+</a>
+<nav aria-label="📖 Understanding the Code" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#the-task-function">
+<span class="md-ellipsis">
+      
+        The Task Function
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#the-task-object">
+<span class="md-ellipsis">
+      
+        The Task Object
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#running-netmiko-through-nornir">
+<span class="md-ellipsis">
+      
+        Running Netmiko Through Nornir
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#the-result-object">
+<span class="md-ellipsis">
+      
+        The Result Object
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#running-tasks-in-mainpy">
+<span class="md-ellipsis">
+      
+        Running Tasks in main.py
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#accessing-results">
+<span class="md-ellipsis">
+      
+        Accessing Results
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#performance-comparison">
+<span class="md-ellipsis">
+      
+        🚀 Performance Comparison
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#customizing-for-your-network">
+<span class="md-ellipsis">
+      
+        🔧 Customizing for Your Network
+      
+    </span>
+</a>
+<nav aria-label="🔧 Customizing for Your Network" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#changing-device-groups">
+<span class="md-ellipsis">
+      
+        Changing Device Groups
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#running-tasks-on-specific-groups">
+<span class="md-ellipsis">
+      
+        Running Tasks on Specific Groups
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#adding-device-variables">
+<span class="md-ellipsis">
+      
+        Adding Device Variables
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#advanced-variations">
+<span class="md-ellipsis">
+      
+        📊 Advanced Variations
+      
+    </span>
+</a>
+<nav aria-label="📊 Advanced Variations" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#add-device-connection-timeout">
+<span class="md-ellipsis">
+      
+        Add Device Connection Timeout
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#different-credentials-per-group">
+<span class="md-ellipsis">
+      
+        Different Credentials Per Group
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#execute-tasks-serially-not-parallel">
+<span class="md-ellipsis">
+      
+        Execute Tasks Serially (Not Parallel)
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#troubleshooting">
+<span class="md-ellipsis">
+      
+        🐛 Troubleshooting
+      
+    </span>
+</a>
+<nav aria-label="🐛 Troubleshooting" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#yaml-parsing-error-in-inventory">
+<span class="md-ellipsis">
+      
+        "YAML parsing error in inventory"
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#connection-failed-hostname-not-reachable">
+<span class="md-ellipsis">
+      
+        "Connection failed: hostname not reachable"
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#no-module-named-nornir_netmiko">
+<span class="md-ellipsis">
+      
+        "No module named nornir_netmiko"
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#typeerror-task-function-must-have-signature-tasktask">
+<span class="md-ellipsis">
+      
+        "TypeError: task function must have signature task(Task)"
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#common-issues-solutions">
+<span class="md-ellipsis">
+      
+        🐛 Common Issues &amp; Solutions
+      
+    </span>
+</a>
+<nav aria-label="🐛 Common Issues &amp; Solutions" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#issue-1-no-module-named-nornir_netmiko">
+<span class="md-ellipsis">
+      
+        Issue 1: "No module named 'nornir_netmiko'"
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#issue-2-connection-refused-or-ssh-timeout">
+<span class="md-ellipsis">
+      
+        Issue 2: "Connection refused" or "SSH timeout"
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#issue-3-yaml-parsing-error-in-inventory">
+<span class="md-ellipsis">
+      
+        Issue 3: "YAML parsing error" in inventory
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#issue-4-connection-pool-exhausted-or-too-many-open-files">
+<span class="md-ellipsis">
+      
+        Issue 4: "Connection pool exhausted" or "too many open files"
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#issue-5-failed-to-acquire-lock-on-device-or-similar-errors">
+<span class="md-ellipsis">
+      
+        Issue 5: "Failed to acquire lock on device" or similar errors
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#basic-testing-validate-your-setup-before-production">
+<span class="md-ellipsis">
+      
+        🧪 Basic Testing: Validate Your Setup Before Production
+      
+    </span>
+</a>
+<nav aria-label="🧪 Basic Testing: Validate Your Setup Before Production" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#test-1-verify-inventory-loads">
+<span class="md-ellipsis">
+      
+        Test 1: Verify Inventory Loads
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#test-2-verify-device-reachability">
+<span class="md-ellipsis">
+      
+        Test 2: Verify Device Reachability
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#test-3-test-command-execution">
+<span class="md-ellipsis">
+      
+        Test 3: Test Command Execution
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#real-world-gotchas-best-practices">
+<span class="md-ellipsis">
+      
+        ⚠️ Real-World Gotchas &amp; Best Practices
+      
+    </span>
+</a>
+<nav aria-label="⚠️ Real-World Gotchas &amp; Best Practices" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#gotcha-1-hardcoded-passwords-are-evil">
+<span class="md-ellipsis">
+      
+        Gotcha 1: Hardcoded Passwords Are Evil
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#gotcha-2-too-many-workers-system-crash">
+<span class="md-ellipsis">
+      
+        Gotcha 2: Too Many Workers = System Crash
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#gotcha-3-failing-device-breaks-the-entire-job">
+<span class="md-ellipsis">
+      
+        Gotcha 3: Failing Device Breaks the Entire Job
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#gotcha-4-logs-are-messy-in-parallel-environment">
+<span class="md-ellipsis">
+      
+        Gotcha 4: Logs Are Messy in Parallel Environment
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#gotcha-5-you-cant-modify-results-after-task-completes">
+<span class="md-ellipsis">
+      
+        Gotcha 5: You Can't Modify Results After Task Completes
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#project-templates-best-practices">
+<span class="md-ellipsis">
+      
+        📦 Project Templates &amp; Best Practices
+      
+    </span>
+</a>
+<nav aria-label="📦 Project Templates &amp; Best Practices" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#recommended-project-layout">
+<span class="md-ellipsis">
+      
+        Recommended Project Layout
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#sample-requirementstxt">
+<span class="md-ellipsis">
+      
+        Sample requirements.txt
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#sample-pyprojecttoml">
+<span class="md-ellipsis">
+      
+        Sample pyproject.toml
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#sample-envexample">
+<span class="md-ellipsis">
+      
+        Sample .env.example
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#sample-gitignore">
+<span class="md-ellipsis">
+      
+        Sample .gitignore
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#initialize-your-environment">
+<span class="md-ellipsis">
+      
+        Initialize Your Environment
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#key-practices">
+<span class="md-ellipsis">
+      
+        Key Practices
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#key-concepts-mastered">
+<span class="md-ellipsis">
+      
+        🎓 Key Concepts Mastered
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#next-steps">
+<span class="md-ellipsis">
+      
+        🎯 Next Steps
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#production-readiness-checklist">
+<span class="md-ellipsis">
+      
+        💡 Production Readiness Checklist
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<nav class="md-tags">
+<span class="md-tag">Intermediate</span>
+<span class="md-tag">Inventory</span>
+<span class="md-tag">Nornir</span>
+<span class="md-tag">Parallel</span>
+<span class="md-tag">Tasks</span>
+<span class="md-tag">Tutorial</span>
+</nav>
+<h1>Nornir Fundamentals</h1>
+<h2 id="nornir-fundamentals">Nornir Fundamentals<a class="headerlink" href="#nornir-fundamentals" title="Anchor link to this section">¶</a></h2>
+<h2 id="from-sequential-scripts-to-parallel-tasks-the-foundation-of-enterprise-automation">"From Sequential Scripts to Parallel Tasks — The Foundation of Enterprise Automation"<a class="headerlink" href="#from-sequential-scripts-to-parallel-tasks-the-foundation-of-enterprise-automation" title="Anchor link to this section">¶</a></h2>
+<p>Now that you understand <strong>why</strong> Nornir matters (<a href="../why-nornir/">Tutorial #1</a>), let's learn <strong>how</strong> to use it.</p>
+<p>In this tutorial, we'll build your first Nornir automation. You'll take the same logic from <a href="../../beginner/multi-device-config-backup/">Beginner Tutorial #3</a> and transform it into a parallel system that runs 10x faster.</p>
+<p><strong>Best part:</strong> The business logic (how to connect to devices and retrieve configs) is almost identical. Nornir just handles the parallelization automatically.</p>
+<hr/>
+<h2 id="what-youll-learn">🎯 What You'll Learn<a class="headerlink" href="#what-youll-learn" title="Anchor link to this section">¶</a></h2>
+<p>By the end of this tutorial, you'll understand:</p>
+<ul>
+<li>✅ Nornir installation and project structure</li>
+<li>✅ Inventory files (YAML-based device management)</li>
+<li>✅ Writing Nornir <strong>task functions</strong> (the core of Nornir)</li>
+<li>✅ Running tasks against multiple devices in parallel</li>
+<li>✅ Processing results from parallel executions</li>
+<li>✅ Logging that works in parallel environments</li>
+<li>✅ Best practices for production Nornir scripts</li>
+</ul>
+<hr/>
+<h2 id="prerequisites">📋 Prerequisites<a class="headerlink" href="#prerequisites" title="Anchor link to this section">¶</a></h2>
+<h3 id="required-knowledge">Required Knowledge<a class="headerlink" href="#required-knowledge" title="Anchor link to this section">¶</a></h3>
+<ul>
+<li>✅ <strong>Completed <a href="../why-nornir/">Tutorial #1: Why Nornir</a></strong> — Understand the problem we're solving</li>
+<li>✅ <strong>Completed <a href="../../beginner/multi-device-config-backup/">Beginner Tutorial #3</a></strong> — Familiar with Netmiko and device connections</li>
+<li>✅ Understanding of Python functions, dictionaries</li>
+<li>✅ Basic YAML format understanding</li>
+</ul>
+<h3 id="required-software">Required Software<a class="headerlink" href="#required-software" title="Anchor link to this section">¶</a></h3>
+<pre class="highlight"><code class="language-bash"># Create a virtual environment
+python -m venv nornir_venv
+source nornir_venv/bin/activate
+# Windows PowerShell: .\nornir_venv\Scripts\Activate.ps1
+# Windows CMD: nornir_venv\Scripts\activate.bat
+
+# Install required packages
+pip install nornir nornir-netmiko nornir-utils netmiko pandas pyyaml</code></pre>
+<h3 id="required-access">Required Access<a class="headerlink" href="#required-access" title="Anchor link to this section">¶</a></h3>
+<ul>
+<li><strong>5+ Cisco devices</strong> with:</li>
+<li>SSH enabled</li>
+<li>Same credentials</li>
+<li>Accessible from your workstation</li>
+<li>Privilege level 15 (for <code>show running-config</code>)</li>
+</ul>
+<hr/>
+<h2 id="start-simple-your-first-nornir-task-before-we-build-the-full-system">⚡ Start Simple: Your First Nornir Task (Before We Build the Full System)<a class="headerlink" href="#start-simple-your-first-nornir-task-before-we-build-the-full-system" title="Anchor link to this section">¶</a></h2>
+<p>Before diving into the complete architecture, let's write the absolute minimal Nornir program to prove the concept works. This takes 2 minutes.</p>
+<h3 id="minimal-example-ping-3-devices-in-parallel">Minimal Example: Ping 3 Devices in Parallel<a class="headerlink" href="#minimal-example-ping-3-devices-in-parallel" title="Anchor link to this section">¶</a></h3>
+<p>Create <code>minimal_example.py</code>:</p>
+<pre class="highlight"><code class="language-python">#!/usr/bin/env python3
+"""
+Absolute minimal Nornir example
+Ping 3 devices in parallel
+"""
+
+from nornir import InitNornir
+from nornir.core.task import Task, Result
+from nornir_netmiko.tasks import netmiko_send_command
+
+def ping_device(task: Task) -&gt; Result:
+    """
+    Ping a device and return result
+    This runs once per device, in parallel
+    """
+    device_name = task.host.name
+
+    result = task.run(
+        netmiko_send_command,
+        command_string="ping 8.8.8.8 repeat 3"
+    )
+
+    return Result(
+        host=task.host,
+        result=result.result
+    )
+
+# Initialize Nornir
+nr = InitNornir(config_file="nornir_config.yaml")
+
+# Run the task on all devices
+results = nr.run(task=ping_device)
+
+# Print results
+for device_name, result_obj in results.items():
+    if result_obj.failed:
+        print(f"✗ {device_name}: FAILED")
+    else:
+        print(f"✓ {device_name}: SUCCESS")</code></pre>
+<p>Create <code>inventory/hosts.yaml</code> (3 devices minimum):</p>
+<pre class="highlight"><code class="language-yaml">---
+router1:
+  hostname: 10.1.1.1
+  groups:
+    - ios_devices
+
+switch1:
+  hostname: 10.1.1.2
+  groups:
+    - ios_devices
+
+switch2:
+  hostname: 10.1.1.3
+  groups:
+    - ios_devices</code></pre>
+<p>Create <code>inventory/groups.yaml</code>:</p>
+<pre class="highlight"><code class="language-yaml">---
+ios_devices:
+  platform: cisco_ios
+  username: admin
+  password: your_password</code></pre>
+<p>Create <code>nornir_config.yaml</code>:</p>
+<pre class="highlight"><code class="language-yaml">---
+runner:
+  plugin: threaded
+  options:
+    num_workers: 3
+inventory:
+  plugin: SimpleInventory
+  options:
+    host_file: "inventory/hosts.yaml"
+    group_file: "inventory/groups.yaml"
+    defaults_file: "inventory/defaults.yaml"</code></pre>
+<p>Create <code>inventory/defaults.yaml</code>:</p>
+<pre class="highlight"><code class="language-yaml">---
+data:
+  connection_timeout: 15
+  auth_timeout: 10</code></pre>
+<p><strong>Run it:</strong></p>
+<pre class="highlight"><code class="language-bash">python minimal_example.py</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="highlight"><code class="language-bash">✓ router1: SUCCESS
+✓ switch1: SUCCESS
+✓ switch2: SUCCESS</code></pre>
+<p><strong>What just happened:</strong> All 3 devices ran in parallel. You can feel the difference if you time it (<code>time python minimal_example.py</code> on Linux/Mac, <code>Measure-Command { python minimal_example.py }</code> in PowerShell). With a sequential script, it would take 3x longer.</p>
+<p><strong>Key insight:</strong> Nornir ran your plain task function across all devices with <code>num_workers: 3</code>, handling the parallelization automatically. You focused on the logic, Nornir handled the concurrency.</p>
+<h2 id="understanding-task-execution-flow-in-nornir">📊 Understanding Task Execution Flow in Nornir<a class="headerlink" href="#understanding-task-execution-flow-in-nornir" title="Anchor link to this section">¶</a></h2>
+<p>The diagram below shows how your tasks execute in parallel:</p>
+<pre class="mermaid"><code>flowchart TD
+  Start([Nornir.run<br/>backup_config]) --&gt; Pool["Connection Pool<br/>(up to 10 workers)"]
+
+  Pool --&gt; T1["Task Instance 1<br/>Device: router1"]
+  Pool --&gt; T2["Task Instance 2<br/>Device: switch1"]
+  Pool --&gt; T3["Task Instance 3<br/>Device: switch2"]
+
+  T1 --&gt; Con1["Connect to Device"]
+  T2 --&gt; Con2["Connect to Device"]
+  T3 --&gt; Con3["Connect to Device"]
+
+  Con1 --&gt; Cmd1["Send Command"]
+  Con2 --&gt; Cmd2["Send Command"]
+  Con3 --&gt; Cmd3["Send Command"]
+
+  Cmd1 --&gt; Result1["Return Result<br/>for router1"]
+  Cmd2 --&gt; Result2["Return Result<br/>for switch1"]
+  Cmd3 --&gt; Result3["Return Result<br/>for switch2"]
+
+  Result1 --&gt; Aggregate["Aggregate All Results"]
+  Result2 --&gt; Aggregate
+  Result3 --&gt; Aggregate
+
+  Aggregate --&gt; End(["Return Combined<br/>Result Object"])
+
+  style Pool fill:#ccffcc
+  style T1 fill:#ffffcc
+  style T2 fill:#ffffcc
+  style T3 fill:#ffffcc
+  style Aggregate fill:#ccffcc
+  style End fill:#ccffcc
+</code></pre>
+<p><strong>Key insight:</strong> Each task instance (T1, T2, T3) runs independently. While T1 waits for SSH, T2 and T3 are processing simultaneously.</p>
+<hr/>
+<h2 id="nornir-project-structure">🏗️ Nornir Project Structure<a class="headerlink" href="#nornir-project-structure" title="Anchor link to this section">¶</a></h2>
+<p>Create a directory for your Nornir project and organise it like this:</p>
+<pre class="highlight"><code class="language-text">my-nornir-automation/
+├── nornir_config.yaml      # ← Nornir configuration
+├── inventory/
+│   ├── defaults.yaml       # ← Default settings
+│   ├── groups.yaml         # ← Device groupings
+│   └── hosts.yaml          # ← Your device list
+├── tasks/
+│   └── backup.py           # ← Your Nornir task functions
+└── configs/                # ← Where backups will be stored
+    └── (created at runtime)</code></pre>
+<p>Let's build each file:</p>
+<hr/>
+<h2 id="file-1-nornir_configyaml">📄 File 1: nornir_config.yaml<a class="headerlink" href="#file-1-nornir_configyaml" title="Anchor link to this section">¶</a></h2>
+<p>This file tells Nornir how to initialize:</p>
+<pre class="highlight"><code class="language-yaml">---
+runner:
+  plugin: threaded
+  options:
+    num_workers: 10                # How many tasks run in parallel
+inventory:
+  plugin: SimpleInventory        # Use file-based inventory
+  options:
+    host_file: "inventory/hosts.yaml"
+    group_file: "inventory/groups.yaml"
+    defaults_file: "inventory/defaults.yaml"</code></pre>
+<p><strong>Key setting:</strong> <code>num_workers: 10</code> means up to 10 devices run in parallel.</p>
+<p><strong>Save as:</strong> <code>nornir_config.yaml</code> in your project root.</p>
+<hr/>
+<h2 id="file-2-inventorydefaultsyaml">📄 File 2: inventory/defaults.yaml<a class="headerlink" href="#file-2-inventorydefaultsyaml" title="Anchor link to this section">¶</a></h2>
+<p>Default settings applied to all devices:</p>
+<pre class="highlight"><code class="language-yaml">---
+data:
+  connection_timeout: 10
+  auth_timeout: 5
+  ssh_config_file: null
+  secret: ""                     # Enable password (leave blank)</code></pre>
+<p><strong>Save as:</strong> <code>inventory/defaults.yaml</code></p>
+<hr/>
+<h2 id="file-3-inventorygroupsyaml">📄 File 3: inventory/groups.yaml<a class="headerlink" href="#file-3-inventorygroupsyaml" title="Anchor link to this section">¶</a></h2>
+<p>Group your devices by type or role:</p>
+<pre class="highlight"><code class="language-yaml">---
+ios_devices:
+  platform: cisco_ios
+  username: admin
+  password: ""                   # Will be overridden at runtime
+ios_routers:
+  platform: cisco_ios
+  username: admin
+  password: ""</code></pre>
+<p><strong>Save as:</strong> <code>inventory/groups.yaml</code></p>
+<hr/>
+<h2 id="file-4-inventoryhostsyaml">📄 File 4: inventory/hosts.yaml<a class="headerlink" href="#file-4-inventoryhostsyaml" title="Anchor link to this section">¶</a></h2>
+<p>Your device inventory (replaces the CSV from Tutorial #3):</p>
+<pre class="highlight"><code class="language-yaml">---
+router1:
+  hostname: 192.168.1.1
+  groups:
+    - ios_devices
+  data:
+    device_type: cisco_ios
+
+router2:
+  hostname: 192.168.1.2
+  groups:
+    - ios_devices
+  data:
+    device_type: cisco_ios
+
+router3:
+  hostname: 192.168.1.3
+  groups:
+    - ios_routers
+  data:
+    device_type: cisco_ios
+
+switch1:
+  hostname: 192.168.1.10
+  groups:
+    - ios_devices
+  data:
+    device_type: cisco_ios</code></pre>
+<p><strong>Key structure:</strong></p>
+<ul>
+<li>Device name (e.g., <code>router1</code>)</li>
+<li><code>hostname</code>: IP or DNS name</li>
+<li><code>groups</code>: Which group this device belongs to</li>
+<li><code>data</code>: Custom fields (like <code>device_type</code>)</li>
+</ul>
+<p><strong>Save as:</strong> <code>inventory/hosts.yaml</code></p>
+<hr/>
+<h2 id="file-5-tasksbackuppy">🔧 File 5: tasks/backup.py<a class="headerlink" href="#file-5-tasksbackuppy" title="Anchor link to this section">¶</a></h2>
+<p>This is where your Nornir tasks live. Let's build it from the ground up:</p>
+<pre class="highlight"><code class="language-python">"""
+Nornir Tasks for Configuration Backup
+Description: Parallel backup of running configs from Cisco devices
+Author: Nautomation Prime
+"""
+
+from nornir.core.task import Task, Result
+from nornir_netmiko.tasks import netmiko_send_command
+import os
+import logging
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
+logger = logging.getLogger(__name__)
+
+def backup_running_config(task: Task) -&gt; Result:
+    """
+    Backup the running configuration from a device
+
+    This is a Nornir task - it runs once per device, in parallel.
+
+    Args:
+        task: Nornir task object containing device info
+
+    Returns:
+        Result object with config data and metadata
+    """
+    device_name = task.host.name
+    device_ip = task.host.hostname
+    device_type = task.host.data.get('device_type', 'cisco_ios')
+
+    logger.info(f"Starting backup for {device_name} ({device_ip})")
+
+    try:
+        # Send the 'show running-config' command via Netmiko (handled by nornir-netmiko)
+        result = task.run(
+            netmiko_send_command,
+            command_string="show running-config",
+            use_textfsm=False,  # We want raw config text, not parsed
+            name="Retrieve running config"
+        )
+
+        config = result[0].result  # Extract the config from the result
+
+        # Verify we got config data
+        if isinstance(config, str) and len(config) &gt; 100:
+            logger.info(f"✓ {device_name}: Retrieved {len(config)} bytes")
+            return Result(
+                host=task.host,
+                result={
+                    'config': config,
+                    'size': len(config),
+                    'status': 'success'
+                }
+            )
+        else:
+            logger.warning(f"⚠ {device_name}: Config seems too small or invalid")
+            return Result(
+                host=task.host,
+                result={
+                    'config': None,
+                    'size': 0,
+                    'status': 'invalid-data'
+                },
+                failed=True
+            )
+
+    except Exception as e:
+        logger.error(f"✗ {device_name}: {str(e)}")
+        return Result(
+            host=task.host,
+            result={
+                'config': None,
+                'size': 0,
+                'status': f'failed: {str(e)}'
+            },
+            failed=True
+        )
+
+def save_config_to_file(task: Task, config_data: dict, backup_dir: str = "configs") -&gt; Result:
+    """
+    Save configuration to a timestamped file
+
+    Args:
+        task: Nornir task object
+        config_data: Dictionary mapping host name -&gt; that host's backup result
+                     (config, size, status) from the previous task. Nornir passes
+                     the SAME kwargs to every host, so we look up this host's own
+                     entry via task.host.name.
+        backup_dir: Directory to save configs
+
+    Returns:
+        Result object with file info
+    """
+    device_name = task.host.name
+
+    try:
+        # Create config directory if it doesn't exist
+        os.makedirs(backup_dir, exist_ok=True)
+
+        # Pull out THIS host's result from the map of all results
+        host_config = config_data.get(device_name, {})
+
+        # Only save if we have valid config
+        if host_config.get('status') != 'success':
+            logger.warning(f"⚠ {device_name}: Skipping save (status: {host_config.get('status')})")
+            return Result(
+                host=task.host,
+                result={
+                    'filename': None,
+                    'path': None,
+                    'status': host_config.get('status')
+                },
+                failed=True
+            )
+
+        # Create safe filename
+        safe_name = device_name.replace('.', '-')
+        filename = f"{safe_name}_running-config.txt"
+        filepath = os.path.join(backup_dir, filename)
+
+        # Write config to file
+        with open(filepath, 'w') as f:
+            f.write(host_config['config'])
+
+        file_size = os.path.getsize(filepath)
+        logger.info(f"✓ {device_name}: Saved to {filepath} ({file_size:,} bytes)")
+
+        return Result(
+            host=task.host,
+            result={
+                'filename': filename,
+                'path': filepath,
+                'size': file_size,
+                'status': 'success'
+            }
+        )
+
+    except Exception as e:
+        logger.error(f"✗ {device_name}: File save failed - {str(e)}")
+        return Result(
+            host=task.host,
+            result={
+                'filename': None,
+                'path': None,
+                'status': f'save-failed: {str(e)}'
+            },
+            failed=True
+        )</code></pre>
+<p><strong>Save as:</strong> <code>tasks/backup.py</code></p>
+<hr/>
+<h2 id="file-6-mainpy">🚀 File 6: main.py<a class="headerlink" href="#file-6-mainpy" title="Anchor link to this section">¶</a></h2>
+<p>Now let's orchestrate everything:</p>
+<pre class="highlight"><code class="language-python">"""
+Main script to run Nornir backup tasks
+"""
+
+import os
+import sys
+import getpass
+from datetime import datetime
+from nornir import InitNornir
+from nornir_utils.plugins.functions import print_result
+from tasks.backup import backup_running_config, save_config_to_file
+
+def main():
+    """Main function to orchestrate backup"""
+
+    print("=" * 70)
+    print("Nornir Multi-Device Configuration Backup")
+    print("=" * 70)
+
+    # Get password
+    device_password = getpass.getpass('Enter device password: ')
+
+    try:
+        # Initialize Nornir from config file
+        nornir = InitNornir(config_file="nornir_config.yaml")
+
+        # Update passwords in inventory
+        for host in nornir.inventory.hosts.values():
+            host.password = device_password
+
+        print(f"\n✓ Loaded {len(nornir.inventory.hosts)} device(s) from inventory\n")
+
+        # Create timestamped backup directory
+        timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+        backup_dir = f"configs/{timestamp}"
+        os.makedirs(backup_dir, exist_ok=True)
+        print(f"✓ Created backup directory: {backup_dir}\n")
+
+        # Run backup task on all devices in parallel
+        print(f"{'=' * 70}")
+        print("Executing parallel backups...\n")
+
+        # Task 1: Retrieve configs from all devices (in parallel)
+        backup_results = nornir.run(
+            task=backup_running_config,
+            name="Backup Running Configs"
+        )
+
+        # Task 2: Process results and save configs
+        print(f"\n{'=' * 70}")
+        print("Processing results and saving to files...\n")
+
+        file_results = nornir.run(
+            task=save_config_to_file,
+            config_data={
+                host_name: backup_results[host_name][0].result
+                for host_name in backup_results.keys()
+            },
+            backup_dir=backup_dir
+        )
+
+        # Summary
+        print(f"\n{'=' * 70}")
+        print("BACKUP SUMMARY")
+        print(f"{'=' * 70}")
+        print(f"Backup Location: {backup_dir}")
+
+        # Count successes and failures
+        successful = sum(
+            1 for result in backup_results.values() 
+            if result[0].result.get('status') == 'success'
+        )
+        failed = len(backup_results) - successful
+
+        print(f"Successful Backups: {successful}/{len(nornir.inventory.hosts)}")
+        print(f"Failed Backups: {failed}/{len(nornir.inventory.hosts)}")
+        print(f"{'=' * 70}")
+
+        # Show backed-up devices
+        if successful &gt; 0:
+            print("\nBacked Up Devices:")
+            for host_name, result in backup_results.items():
+                if result[0].result.get('status') == 'success':
+                    size = result[0].result.get('size', 0)
+                    print(f"  ✓ {host_name}: {size:,} bytes")
+
+        if failed &gt; 0:
+            print("\nFailed Devices:")
+            for host_name, result in backup_results.items():
+                if result[0].result.get('status') != 'success':
+                    status = result[0].result.get('status', 'unknown')
+                    print(f"  ✗ {host_name}: {status}")
+
+        print()
+
+    except Exception as e:
+        print(f"✗ Error: {str(e)}")
+        sys.exit(1)
+
+if __name__ == "__main__":
+    main()</code></pre>
+<p><strong>Save as:</strong> <code>main.py</code> in your project root.</p>
+<hr/>
+<h2 id="how-to-run">🏃 How to Run<a class="headerlink" href="#how-to-run" title="Anchor link to this section">¶</a></h2>
+<h3 id="step-1-set-up-your-project">Step 1: Set Up Your Project<a class="headerlink" href="#step-1-set-up-your-project" title="Anchor link to this section">¶</a></h3>
+<pre class="highlight"><code class="language-bash"># Create project directory
+mkdir my-nornir-automation
+cd my-nornir-automation
+
+# Create subdirectories
+mkdir inventory
+mkdir tasks
+mkdir configs
+
+# Create virtual environment
+python -m venv venv
+source venv/bin/activate
+# Windows PowerShell: .\venv\Scripts\Activate.ps1
+# Windows CMD: venv\Scripts\activate.bat
+
+# Install dependencies
+pip install nornir nornir-netmiko nornir-utils netmiko getpass pyyaml</code></pre>
+<h3 id="step-2-create-all-files">Step 2: Create All Files<a class="headerlink" href="#step-2-create-all-files" title="Anchor link to this section">¶</a></h3>
+<p>Copy the YAML and Python files we created above into their respective locations.</p>
+<h3 id="step-3-edit-inventoryhostsyaml">Step 3: Edit inventory/hosts.yaml<a class="headerlink" href="#step-3-edit-inventoryhostsyaml" title="Anchor link to this section">¶</a></h3>
+<p>Update with YOUR actual devices:</p>
+<pre class="highlight"><code class="language-yaml">---
+my-router1:
+  hostname: 10.1.1.1
+  groups:
+    - ios_devices
+  data:
+    device_type: cisco_ios
+
+my-router2:
+  hostname: 10.1.1.2
+  groups:
+    - ios_devices
+  data:
+    device_type: cisco_ios
+
+# Add more devices here...</code></pre>
+<h3 id="step-4-run-the-script">Step 4: Run the Script<a class="headerlink" href="#step-4-run-the-script" title="Anchor link to this section">¶</a></h3>
+<pre class="highlight"><code class="language-bash">python main.py</code></pre>
+<p>You'll be prompted:</p>
+<pre class="highlight"><code class="language-bash">Enter device password:</code></pre>
+<p>Type your password and press Enter.</p>
+<h3 id="step-5-watch-it-run">Step 5: Watch It Run<a class="headerlink" href="#step-5-watch-it-run" title="Anchor link to this section">¶</a></h3>
+<p>You'll see output like:</p>
+<pre class="highlight"><code class="language-bash">======================================================================
+Nornir Multi-Device Configuration Backup
+======================================================================
+
+✓ Loaded 5 device(s) from inventory
+
+✓ Created backup directory: configs/20260216_143022
+
+======================================================================
+Executing parallel backups...
+
+2026-02-16 14:30:22 - __main__ - INFO - Starting backup for router1 (10.1.1.1)
+2026-02-16 14:30:22 - __main__ - INFO - Starting backup for router2 (10.1.1.2)
+2026-02-16 14:30:22 - __main__ - INFO - Starting backup for switch1 (10.1.1.10)
+[Notice all three start at the SAME TIME - that's parallelization!]
+2026-02-16 14:30:27 - __main__ - INFO - ✓ router1: Retrieved 45,234 bytes
+2026-02-16 14:30:27 - __main__ - INFO - ✓ router2: Retrieved 38,912 bytes
+2026-02-16 14:30:28 - __main__ - INFO - ✓ switch1: Retrieved 62,148 bytes
+
+======================================================================
+Processing results and saving to files...
+
+2026-02-16 14:30:28 - __main__ - INFO - ✓ router1: Saved to configs/20260216_143022/router1_running-config.txt (45,234 bytes)
+2026-02-16 14:30:28 - __main__ - INFO - ✓ router2: Saved to configs/20260216_143022/router2_running-config.txt (38,912 bytes)
+2026-02-16 14:30:28 - __main__ - INFO - ✓ switch1: Saved to configs/20260216_143022/switch1_running-config.txt (62,148 bytes)
+
+======================================================================
+BACKUP SUMMARY
+======================================================================
+Backup Location: configs/20260216_143022
+Successful Backups: 3/3
+Failed Backups: 0/3
+======================================================================
+
+Backed Up Devices:
+  ✓ router1: 45,234 bytes
+  ✓ router2: 38,912 bytes
+  ✓ switch1: 62,148 bytes</code></pre>
+<p><strong>Notice:</strong> All 3 devices backed up in ~6 seconds total (not 18 seconds sequential)!</p>
+<hr/>
+<h2 id="understanding-the-code">📖 Understanding the Code<a class="headerlink" href="#understanding-the-code" title="Anchor link to this section">¶</a></h2>
+<p>Let's break down the key Nornir concepts:</p>
+<h3 id="the-task-function">The Task Function<a class="headerlink" href="#the-task-function" title="Anchor link to this section">¶</a></h3>
+<pre class="highlight"><code class="language-python">def backup_running_config(task: Task) -&gt; Result:</code></pre>
+<p><strong>What it does:</strong> A Nornir task is just a plain function whose first parameter is a <code>Task</code> object. You hand the function to <code>nr.run(task=...)</code> — there is <strong>no special decorator</strong> (Nornir has no <code>@task</code>).</p>
+<p><strong>How it works:</strong></p>
+<ul>
+<li><code>task</code> is a special Nornir object containing device info + methods</li>
+<li><code>task.host</code> gives you the device object</li>
+<li><code>task.run()</code> executes other tasks or plugins</li>
+<li><code>Result</code> is what you return</li>
+</ul>
+<p><strong>Why:</strong> Nornir handles the threading/async complexity for you. You just write a normal function that accepts a <code>Task</code> and returns a <code>Result</code>.</p>
+<hr/>
+<h3 id="the-task-object">The Task Object<a class="headerlink" href="#the-task-object" title="Anchor link to this section">¶</a></h3>
+<pre class="highlight"><code class="language-python">task.host.name           # Device name from inventory (e.g., "router1")
+task.host.hostname       # Device IP/DNS (e.g., "10.1.1.1")
+task.host.username       # Device username
+task.host.password       # Device password
+task.host.data           # Custom data from inventory
+task.host.groups         # Groups this device belongs to</code></pre>
+<p><strong>Usage:</strong> Access device info like normal Python attributes.</p>
+<hr/>
+<h3 id="running-netmiko-through-nornir">Running Netmiko Through Nornir<a class="headerlink" href="#running-netmiko-through-nornir" title="Anchor link to this section">¶</a></h3>
+<pre class="highlight"><code class="language-python">result = task.run(
+    netmiko_send_command,
+    command_string="show running-config",
+    use_textfsm=False,
+    name="Retrieve running config"
+)</code></pre>
+<p><strong>What it does:</strong> Executes a Netmiko command via Nornir.</p>
+<p><strong>Why:</strong> The <code>nornir-netmiko</code> plugin bridges Netmiko and Nornir, handling SSH connections across all devices.</p>
+<hr/>
+<h3 id="the-result-object">The Result Object<a class="headerlink" href="#the-result-object" title="Anchor link to this section">¶</a></h3>
+<pre class="highlight"><code class="language-python">return Result(
+    host=task.host,
+    result={'config': config, 'size': len(config), 'status': 'success'},
+    failed=False  # or True if something went wrong
+)</code></pre>
+<p><strong>What it does:</strong> Packages your result for aggregation.</p>
+<p><strong>Why:</strong> Nornir collects all results ( from all devices) and provides unified access.</p>
+<hr/>
+<h3 id="running-tasks-in-mainpy">Running Tasks in main.py<a class="headerlink" href="#running-tasks-in-mainpy" title="Anchor link to this section">¶</a></h3>
+<pre class="highlight"><code class="language-python">backup_results = nornir.run(
+    task=backup_running_config,
+    name="Backup Running Configs"
+)</code></pre>
+<p><strong>What it does:</strong> Runs <code>backup_running_config</code> on ALL devices in parallel.</p>
+<p><strong>Returns:</strong> Aggregated results from all devices.</p>
+<p><strong>Most important:</strong>  You don't write loops! Nornir handles the parallelization automatically.</p>
+<hr/>
+<h3 id="accessing-results">Accessing Results<a class="headerlink" href="#accessing-results" title="Anchor link to this section">¶</a></h3>
+<pre class="highlight"><code class="language-python">for host_name, result in backup_results.items():
+    status = result[0].result.get('status')
+    if status == 'success':
+        print(f"✓ {host_name}")
+    else:
+        print(f"✗ {host_name}")</code></pre>
+<p><strong>Structure:</strong> <code>backup_results[device_name][0].result</code></p>
+<ul>
+<li>Device name from inventory</li>
+<li>Index [0] is the first task result; if you run multiple tasks per host, use [1], [2], etc.</li>
+<li><code>.result</code> is your returned data</li>
+</ul>
+<hr/>
+<h2 id="performance-comparison">🚀 Performance Comparison<a class="headerlink" href="#performance-comparison" title="Anchor link to this section">¶</a></h2>
+<p>Let's measure the difference:</p>
+<p><strong>Tutorial #3 (Sequential):</strong></p>
+<pre class="highlight"><code class="language-bash">5 devices × 6 seconds = 30 seconds</code></pre>
+<p><strong>This Nornir script (Parallel):</strong></p>
+<pre class="highlight"><code class="language-bash">1 round × 6 seconds = 6 seconds
+(All 5 devices run simultaneously)</code></pre>
+<p><strong>Speedup: 5x</strong> (for 5 devices, you'd get even more with 20+ devices)</p>
+<hr/>
+<h2 id="customizing-for-your-network">🔧 Customizing for Your Network<a class="headerlink" href="#customizing-for-your-network" title="Anchor link to this section">¶</a></h2>
+<h3 id="changing-device-groups">Changing Device Groups<a class="headerlink" href="#changing-device-groups" title="Anchor link to this section">¶</a></h3>
+<p>Inventory groups organise devices by type:</p>
+<pre class="highlight"><code class="language-yaml"># inventory/groups.yaml
+ios_routers:
+  username: admin_ios
+
+ios_switches:
+  username: admin_switches
+
+nxos_devices:
+  username: admin_nx</code></pre>
+<p>Then use groups in <code>hosts.yaml</code>:</p>
+<pre class="highlight"><code class="language-yaml">---
+core-router1:
+  hostname: 10.1.1.1
+  groups:
+    - ios_routers    # ← Uses ios_routers group settings</code></pre>
+<h3 id="running-tasks-on-specific-groups">Running Tasks on Specific Groups<a class="headerlink" href="#running-tasks-on-specific-groups" title="Anchor link to this section">¶</a></h3>
+<pre class="highlight"><code class="language-python">from nornir.core.filter import F
+
+# Only run on ios_routers
+filtered_inventory = nornir.filter(F(groups__contains="ios_routers"))
+results = filtered_inventory.run(task=backup_running_config)</code></pre>
+<h3 id="adding-device-variables">Adding Device Variables<a class="headerlink" href="#adding-device-variables" title="Anchor link to this section">¶</a></h3>
+<pre class="highlight"><code class="language-yaml">---
+router1:
+  hostname: 10.1.1.1
+  groups:
+    - ios_devices
+  data:
+    device_type: cisco_ios
+    location: "New York"        # ← Custom variable
+    is_production: true         # ← Custom variable
+    backup_priority: high       # ← Custom variable</code></pre>
+<p>Access in tasks:</p>
+<pre class="highlight"><code class="language-python">location = task.host.data.get('location')
+priority = task.host.data.get('backup_priority')</code></pre>
+<hr/>
+<h2 id="advanced-variations">📊 Advanced Variations<a class="headerlink" href="#advanced-variations" title="Anchor link to this section">¶</a></h2>
+<h3 id="add-device-connection-timeout">Add Device Connection Timeout<a class="headerlink" href="#add-device-connection-timeout" title="Anchor link to this section">¶</a></h3>
+<pre class="highlight"><code class="language-yaml"># inventory/defaults.yaml
+data:
+  connection_timeout: 15
+  auth_timeout: 5
+  read_timeout: 30</code></pre>
+<hr/>
+<h3 id="different-credentials-per-group">Different Credentials Per Group<a class="headerlink" href="#different-credentials-per-group" title="Anchor link to this section">¶</a></h3>
+<pre class="highlight"><code class="language-python"># In main.py
+for host in nornir.inventory.hosts.values():
+    if "ios" in [g.name for g in host.groups]:
+        host.password = ios_password
+    elif "nxos" in [g.name for g in host.groups]:
+        host.password = nxos_password</code></pre>
+<hr/>
+<h3 id="execute-tasks-serially-not-parallel">Execute Tasks Serially (Not Parallel)<a class="headerlink" href="#execute-tasks-serially-not-parallel" title="Anchor link to this section">¶</a></h3>
+<p>Sometimes you want to run sequentially (e.g., upgrades where order matters):</p>
+<pre class="highlight"><code class="language-python"># In nornir_config.yaml
+runner:
+  plugin: threaded
+  options:
+    num_workers: 1  # ← Serial execution instead of parallel</code></pre>
+<hr/>
+<h2 id="troubleshooting">🐛 Troubleshooting<a class="headerlink" href="#troubleshooting" title="Anchor link to this section">¶</a></h2>
+<h3 id="yaml-parsing-error-in-inventory">"YAML parsing error in inventory"<a class="headerlink" href="#yaml-parsing-error-in-inventory" title="Anchor link to this section">¶</a></h3>
+<p><strong>Check:</strong> YAML spacing and indentation (must be 2 spaces, not tabs)</p>
+<hr/>
+<h3 id="connection-failed-hostname-not-reachable">"Connection failed: hostname not reachable"<a class="headerlink" href="#connection-failed-hostname-not-reachable" title="Anchor link to this section">¶</a></h3>
+<p><strong>Check:</strong></p>
+<ul>
+<li>Device IP is correct in <code>hosts.yaml</code></li>
+<li>Device is reachable: <code>ping 10.1.1.1</code></li>
+<li>SSH is enabled: <code>show ip ssh</code></li>
+</ul>
+<hr/>
+<h3 id="no-module-named-nornir_netmiko">"No module named nornir_netmiko"<a class="headerlink" href="#no-module-named-nornir_netmiko" title="Anchor link to this section">¶</a></h3>
+<p><strong>Fix:</strong> Install the plugin</p>
+<pre class="highlight"><code class="language-bash">pip install nornir-netmiko</code></pre>
+<hr/>
+<h3 id="typeerror-task-function-must-have-signature-tasktask">"TypeError: task function must have signature task(Task)"<a class="headerlink" href="#typeerror-task-function-must-have-signature-tasktask" title="Anchor link to this section">¶</a></h3>
+<p><strong>Check:</strong> Your task function signature:</p>
+<pre class="highlight"><code class="language-python">def my_task(task: Task) -&gt; Result:  # ← Must match this</code></pre>
+<hr/>
+<hr/>
+<h2 id="common-issues-solutions">🐛 Common Issues &amp; Solutions<a class="headerlink" href="#common-issues-solutions" title="Anchor link to this section">¶</a></h2>
+<h3 id="issue-1-no-module-named-nornir_netmiko">Issue 1: "No module named 'nornir_netmiko'"<a class="headerlink" href="#issue-1-no-module-named-nornir_netmiko" title="Anchor link to this section">¶</a></h3>
+<p><strong>Cause:</strong> Netmiko plugin not installed</p>
+<p><strong>Solution:</strong></p>
+<pre class="highlight"><code class="language-bash">pip install nornir-netmiko</code></pre>
+<h3 id="issue-2-connection-refused-or-ssh-timeout">Issue 2: "Connection refused" or "SSH timeout"<a class="headerlink" href="#issue-2-connection-refused-or-ssh-timeout" title="Anchor link to this section">¶</a></h3>
+<p><strong>Root causes (in order of likelihood):</strong></p>
+<ol>
+<li>
+<p><strong>Device IP is wrong</strong></p>
+<ul>
+<li>Check: <code>ping 192.168.1.1</code> (from your machine)</li>
+<li>Fix: Verify <code>hosts.yaml</code> IP addresses</li>
+</ul>
+</li>
+<li>
+<p><strong>SSH not enabled on device</strong></p>
+<ul>
+<li>Check: <code>show ip ssh</code> on the device</li>
+<li>Fix: <code>ip ssh version 2</code> and <code>line vty 0 4</code> config</li>
+</ul>
+</li>
+<li>
+<p><strong>Credentials are wrong</strong></p>
+<ul>
+<li>Check: Can you manually SSH? <code>ssh admin@192.168.1.1</code></li>
+<li>Fix: Update <code>groups.yaml</code> password</li>
+</ul>
+</li>
+<li>
+<p><strong>Device is down or unreachable</strong></p>
+<ul>
+<li>Check: Device is powered on and network is up</li>
+<li>Fix: Troubleshoot network connectivity first</li>
+</ul>
+</li>
+<li>
+<p><strong>Firewall blocking SSH</strong></p>
+<ul>
+<li>Check: <code>telnet 192.168.1.1 22</code> (any open TCP session or blank screen means the port is reachable)</li>
+<li>Fix: Adjust firewall rules</li>
+</ul>
+</li>
+</ol>
+<p><strong>Debug technique:</strong> Before running Nornir, test SSH manually:</p>
+<pre class="highlight"><code class="language-bash">ssh -v admin@192.168.1.1</code></pre>
+<p>The verbose output (-v) shows exactly where it's hanging.
+Windows PowerShell uses the same command if OpenSSH client is installed.</p>
+<h3 id="issue-3-yaml-parsing-error-in-inventory">Issue 3: "YAML parsing error" in inventory<a class="headerlink" href="#issue-3-yaml-parsing-error-in-inventory" title="Anchor link to this section">¶</a></h3>
+<p><strong>Cause:</strong> Indentation or spacing issues</p>
+<p><strong>Solution:</strong> YAML is indent-sensitive (must use 2 spaces, no tabs):</p>
+<pre class="highlight"><code class="language-yaml"># ✓ CORRECT
+ios_devices:
+  username: admin
+  password: secret
+
+# ✗ WRONG (tabs used)
+ios_devices:
+    username: admin
+    password: secret</code></pre>
+<p><strong>Check:</strong> In your editor, enable "visible whitespace" (<code>Ctrl+Shift+P</code> → "toggle whitespace")</p>
+<h3 id="issue-4-connection-pool-exhausted-or-too-many-open-files">Issue 4: "Connection pool exhausted" or "too many open files"<a class="headerlink" href="#issue-4-connection-pool-exhausted-or-too-many-open-files" title="Anchor link to this section">¶</a></h3>
+<p><strong>Cause:</strong> <code>num_workers</code> is too high for your system</p>
+<p><strong>Your system limits:</strong></p>
+<pre class="highlight"><code class="language-bash"># Check max open files (Linux/Mac)
+ulimit -n
+
+# Typical defaults range from ~256-1024
+# If ulimit -n is 1024, keep num_workers &lt;= 100
+# Windows: no ulimit equivalent, start with 10-20 workers and increase slowly</code></pre>
+<p><strong>Solution:</strong> Reduce <code>num_workers</code> in <code>nornir_config.yaml</code>:</p>
+<pre class="highlight"><code class="language-yaml">runner:
+  plugin: threaded
+  options:
+    num_workers: 10  # ← Start conservative, increase in small steps</code></pre>
+<h3 id="issue-5-failed-to-acquire-lock-on-device-or-similar-errors">Issue 5: "Failed to acquire lock on device" or similar errors<a class="headerlink" href="#issue-5-failed-to-acquire-lock-on-device-or-similar-errors" title="Anchor link to this section">¶</a></h3>
+<p><strong>Cause:</strong> Device doesn't support concurrent SSH sessions</p>
+<p><strong>Solution:</strong></p>
+<ul>
+<li>Reduce <code>num_workers</code></li>
+<li>OR check device documentation for session limits</li>
+<li>Some devices allow only 5-10 concurrent SSH sessions per device</li>
+</ul>
+<hr/>
+<h2 id="basic-testing-validate-your-setup-before-production">🧪 Basic Testing: Validate Your Setup Before Production<a class="headerlink" href="#basic-testing-validate-your-setup-before-production" title="Anchor link to this section">¶</a></h2>
+<p>Before running backups on real devices, validate your Nornir setup with these tests:</p>
+<h3 id="test-1-verify-inventory-loads">Test 1: Verify Inventory Loads<a class="headerlink" href="#test-1-verify-inventory-loads" title="Anchor link to this section">¶</a></h3>
+<pre class="highlight"><code class="language-python">#!/usr/bin/env python3
+"""Test that Nornir can load your inventory"""
+
+from nornir import InitNornir
+
+nr = InitNornir(config_file="nornir_config.yaml")
+
+print(f"✓ Loaded {len(nr.inventory.hosts)} devices:")
+for host in nr.inventory.hosts.values():
+    print(f"  - {host.name}: {host.hostname}")</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="highlight"><code class="language-bash">✓ Loaded 5 devices:
+  - router1: 192.168.1.1
+  - switch1: 192.168.1.2
+  - switch2: 192.168.1.3
+  - switch3: 192.168.1.4
+  - firewall1: 192.168.1.5</code></pre>
+<h3 id="test-2-verify-device-reachability">Test 2: Verify Device Reachability<a class="headerlink" href="#test-2-verify-device-reachability" title="Anchor link to this section">¶</a></h3>
+<pre class="highlight"><code class="language-python">#!/usr/bin/env python3
+"""Test SSH connectivity to each device"""
+
+from nornir import InitNornir
+from nornir.core.task import Task, Result
+
+def test_connectivity(task: Task) -&gt; Result:
+    """Try to connect to device, return success/failure"""
+    try:
+        # This triggers a connection attempt
+        task.host.get_connection("netmiko", task.nornir.config)
+        return Result(host=task.host, result="✓ Connected")
+    except Exception as e:
+        return Result(
+            host=task.host,
+            result=f"✗ Failed: {str(e)}",
+            failed=True
+        )
+
+nr = InitNornir(config_file="nornir_config.yaml")
+results = nr.run(task=test_connectivity)
+
+# Summary
+passed = sum(1 for r in results.values() if not r.failed)
+failed = sum(1 for r in results.values() if r.failed)
+
+print(f"\n✓ Passed: {passed}/{len(results)}")
+if failed &gt; 0:
+    print(f"✗ Failed: {failed}/{len(results)}")
+    print("\nFailed devices:")
+    for device, result in results.items():
+        if result.failed:
+            print(f"  - {device}: {result.result}")</code></pre>
+<h3 id="test-3-test-command-execution">Test 3: Test Command Execution<a class="headerlink" href="#test-3-test-command-execution" title="Anchor link to this section">¶</a></h3>
+<pre class="highlight"><code class="language-python">#!/usr/bin/env python3
+"""Test that you can run real commands"""
+
+from nornir import InitNornir
+from nornir.core.task import Task, Result
+from nornir_netmiko.tasks import netmiko_send_command
+
+def test_commands(task: Task) -&gt; Result:
+    """Run a simple show command"""
+    result = task.run(
+        netmiko_send_command,
+        command_string="show version | include Cisco"
+    )
+
+    output = result.result
+    return Result(host=task.host, result=output)
+
+nr = InitNornir(config_file="nornir_config.yaml")
+results = nr.run(task=test_commands)
+
+for device, result_obj in results.items():
+    output = result_obj.result[:50] + "..."  # First 50 chars
+    print(f"{device}: {output}")</code></pre>
+<hr/>
+<h2 id="real-world-gotchas-best-practices">⚠️ Real-World Gotchas &amp; Best Practices<a class="headerlink" href="#real-world-gotchas-best-practices" title="Anchor link to this section">¶</a></h2>
+<h3 id="gotcha-1-hardcoded-passwords-are-evil">Gotcha 1: Hardcoded Passwords Are Evil<a class="headerlink" href="#gotcha-1-hardcoded-passwords-are-evil" title="Anchor link to this section">¶</a></h3>
+<p><strong>Bad:</strong></p>
+<pre class="highlight"><code class="language-yaml">ios_devices:
+  username: admin
+  password: "MySecurePassword123!"  # ← NO! Git will expose this!</code></pre>
+<p><strong>Good:</strong></p>
+<pre class="highlight"><code class="language-yaml">ios_devices:
+  username: admin
+  password: ""  # Leave blank, use environment variable</code></pre>
+<p>Then in Python:</p>
+<pre class="highlight"><code class="language-python">import os
+
+# Password from environment (safer in CI/CD)
+nr = InitNornir(config_file="nornir_config.yaml")
+
+# Inject credentials from secure source
+for host in nr.inventory.hosts.values():
+    host.password = os.environ.get("DEVICE_PASSWORD")</code></pre>
+<h3 id="gotcha-2-too-many-workers-system-crash">Gotcha 2: Too Many Workers = System Crash<a class="headerlink" href="#gotcha-2-too-many-workers-system-crash" title="Anchor link to this section">¶</a></h3>
+<p><strong>Bad:</strong></p>
+<pre class="highlight"><code class="language-yaml">runner:
+  plugin: threaded
+  options:
+    num_workers: 500  # If you have 500 devices!</code></pre>
+<p><strong>Good:</strong></p>
+<pre class="highlight"><code class="language-yaml">runner:
+  plugin: threaded
+  options:
+    num_workers: 20  # Conservative, increase if needed</code></pre>
+<p><strong>Rule of thumb:</strong> Start with 10, then increase in small steps while watching runtime and failures. If runtime keeps dropping without more timeouts, you can add workers. If timeouts or failures rise, you have exceeded what the network/devices can handle—back off.</p>
+<p><strong>Example:</strong></p>
+<ul>
+<li>10 workers: 8 min, 0 failures</li>
+<li>20 workers: 4 min, 0 failures</li>
+<li>30 workers: 3.5 min, 5 timeouts
+<strong>Result:</strong> Use 20 workers. The speedup from 30 is small and reliability drops.</li>
+</ul>
+<h3 id="gotcha-3-failing-device-breaks-the-entire-job">Gotcha 3: Failing Device Breaks the Entire Job<a class="headerlink" href="#gotcha-3-failing-device-breaks-the-entire-job" title="Anchor link to this section">¶</a></h3>
+<p><strong>Your old Tutorial #3 code:</strong></p>
+<pre class="highlight"><code class="language-python">for device in devices:
+    backup_device(device)  # If device 10 fails, 11-100 don't run</code></pre>
+<p><strong>Nornir approach:</strong></p>
+<pre class="highlight"><code class="language-python">results = nr.run(backup_config)  # All devices run, failures isolated
+
+# Check results individually
+for device, result_obj in results.items():
+    if result_obj.failed:
+        print(f"Device {device} failed, but others still completed")</code></pre>
+<p><strong>Lesson:</strong> Framework-level error isolation is huge for enterprise reliability.</p>
+<h3 id="gotcha-4-logs-are-messy-in-parallel-environment">Gotcha 4: Logs Are Messy in Parallel Environment<a class="headerlink" href="#gotcha-4-logs-are-messy-in-parallel-environment" title="Anchor link to this section">¶</a></h3>
+<p><strong>Bad (from Tutorial #3):</strong></p>
+<pre class="highlight"><code class="language-python">for device in devices:
+    print(f"Backing up {device}")  # Output is interleaved/garbled</code></pre>
+<p><strong>Good (Nornir way):</strong></p>
+<pre class="highlight"><code class="language-python">import logging
+
+logging.basicConfig(
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
+logger = logging.getLogger("backup")
+
+# Within your task:
+logger.info(f"Device {task.host.name}: Starting backup")</code></pre>
+<h3 id="gotcha-5-you-cant-modify-results-after-task-completes">Gotcha 5: You Can't Modify Results After Task Completes<a class="headerlink" href="#gotcha-5-you-cant-modify-results-after-task-completes" title="Anchor link to this section">¶</a></h3>
+<p><strong>Bad:</strong></p>
+<pre class="highlight"><code class="language-python">def backup_config(task: Task) -&gt; Result:
+    # ... get config ...
+    result = Result(host=task.host, result={'config': config})
+
+    # Don't try to modify after return
+    result.result['timestamp'] = time.now()  # Too late!</code></pre>
+<p><strong>Good:</strong></p>
+<pre class="highlight"><code class="language-python">def backup_config(task: Task) -&gt; Result:
+    # ... get config ...
+
+    # Include everything BEFORE returning
+    result_data = {
+        'config': config,
+        'timestamp': time.now(),
+        'size': len(config)
+    }
+
+    return Result(host=task.host, result=result_data)</code></pre>
+<hr/>
+<h2 id="project-templates-best-practices">📦 Project Templates &amp; Best Practices<a class="headerlink" href="#project-templates-best-practices" title="Anchor link to this section">¶</a></h2>
+<p>As you scale beyond this tutorial, use this structure:</p>
+<h3 id="recommended-project-layout">Recommended Project Layout<a class="headerlink" href="#recommended-project-layout" title="Anchor link to this section">¶</a></h3>
+<pre class="highlight"><code class="language-text">my-nornir-automation/
+├── .gitignore              # Exclude secrets, venv, __pycache__
+├── .env.example            # Template for environment variables
+├── README.md               # Project documentation
+├── requirements.txt        # Dependencies (pip install -r)
+├── pyproject.toml          # Modern Python project config
+│
+├── nornir_config.yaml      # Nornir configuration
+│
+├── inventory/
+│   ├── defaults.yaml
+│   ├── groups.yaml
+│   └── hosts.yaml
+│
+├── tasks/                  # Your Nornir task functions
+│   ├── __init__.py
+│   ├── backup.py
+│   ├── discovery.py
+│   └── compliance.py
+│
+├── middleware/             # Custom middleware (auth, validation)
+│   └── __init__.py
+│
+├── plugins/                # Custom plugins (custom inventory, etc)
+│   └── __init__.py
+│
+├── tests/                  # Unit tests
+│   ├── __init__.py
+│   ├── test_backup.py
+│   └── test_discovery.py
+│
+├── logs/                   # Job logs (gitignored)
+├── configs/                # Backed-up configs (gitignored)
+└── output/                 # Reports and results (gitignored)</code></pre>
+<h3 id="sample-requirementstxt">Sample <code>requirements.txt</code><a class="headerlink" href="#sample-requirementstxt" title="Anchor link to this section">¶</a></h3>
+<pre class="highlight"><code class="language-text">nornir==3.3.0
+nornir-netmiko==0.4.0
+nornir-utils==0.4.0
+netmiko==4.3.0
+paramiko==3.3.1
+pyyaml==6.0
+requests==2.31.0
+pytest==7.4.0
+pytest-mock==3.11.1
+python-dotenv==1.0.0</code></pre>
+<h3 id="sample-pyprojecttoml">Sample <code>pyproject.toml</code><a class="headerlink" href="#sample-pyprojecttoml" title="Anchor link to this section">¶</a></h3>
+<pre class="highlight"><code class="language-toml">[project]
+name = "my-nornir-automation"
+version = "1.0.0"
+description = "Enterprise network automation with Nornir"
+authors = [{name = "Your Name", email = "you@example.com"}]
+requires-python = "&gt;=3.8"
+dependencies = [
+    "nornir&gt;=3.3.0",
+    "nornir-netmiko&gt;=0.4.0",
+    "netmiko&gt;=4.3.0",
+    "pyyaml&gt;=6.0",
+    "requests&gt;=2.31.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest&gt;=7.4.0",
+    "pytest-mock&gt;=3.11.1",
+    "black&gt;=23.0.0",
+    "isort&gt;=5.12.0",
+]
+
+[build-system]
+requires = ["setuptools&gt;=65.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"</code></pre>
+<h3 id="sample-envexample">Sample <code>.env.example</code><a class="headerlink" href="#sample-envexample" title="Anchor link to this section">¶</a></h3>
+<pre class="highlight"><code class="language-bash"># Copy to .env and fill in your values
+# NEVER commit .env to git!
+
+DEVICE_USERNAME=admin
+DEVICE_PASSWORD=your_password_here
+NORNIR_NUM_WORKERS=10
+LOG_LEVEL=INFO
+
+# Optional: For advanced patterns
+NETBOX_URL=https://netbox.example.com/api/
+NETBOX_TOKEN=your_netbox_token</code></pre>
+<h3 id="sample-gitignore">Sample <code>.gitignore</code><a class="headerlink" href="#sample-gitignore" title="Anchor link to this section">¶</a></h3>
+<pre class="highlight"><code class="language-text"># Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+venv/
+env/
+
+# Environment variables
+.env
+.env.local
+
+# Nornir outputs
+configs/
+logs/
+output/
+*.db
+backup.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db</code></pre>
+<h3 id="initialize-your-environment">Initialize Your Environment<a class="headerlink" href="#initialize-your-environment" title="Anchor link to this section">¶</a></h3>
+<pre class="highlight"><code class="language-bash"># One-time setup
+python -m venv venv
+source venv/bin/activate
+# Windows PowerShell: .\venv\Scripts\Activate.ps1
+# Windows CMD: venv\Scripts\activate.bat
+pip install -r requirements.txt
+
+# Load your .env file
+cp .env.example .env  # Linux/Mac
+# Windows PowerShell: Copy-Item .env.example .env
+# Windows CMD: copy .env.example .env
+# Edit .env with your credentials
+
+# Verify setup
+python -c "from nornir import InitNornir; nr = InitNornir(config_file='nornir_config.yaml'); print(f'Loaded {len(nr.inventory.hosts)} devices')"</code></pre>
+<h3 id="key-practices">Key Practices<a class="headerlink" href="#key-practices" title="Anchor link to this section">¶</a></h3>
+<p>✅ <strong>Use <code>python-dotenv</code></strong> to load <code>.env</code> file:</p>
+<pre class="highlight"><code class="language-python">from dotenv import load_dotenv
+import os
+
+load_dotenv()
+device_password = os.environ.get('DEVICE_PASSWORD')</code></pre>
+<p>✅ <strong>Never commit secrets</strong> — use <code>.env</code> file, CI/CD secrets, or vaults</p>
+<p>✅ <strong>Organize by function</strong> — separate backup, discovery, compliance tasks</p>
+<p>✅ <strong>Include unit tests</strong> — catch bugs before production</p>
+<p>✅ <strong>Document assumptions</strong> — README should explain how to set up and use</p>
+<hr/>
+<h2 id="key-concepts-mastered">🎓 Key Concepts Mastered<a class="headerlink" href="#key-concepts-mastered" title="Anchor link to this section">¶</a></h2>
+<p>Congratulations! You've learned:</p>
+<p>✅ <strong>Inventory Management</strong> — Organise devices in YAML<br/>
+✅ <strong>Task Functions</strong> — Write once, Nornir runs on all devices<br/>
+✅ <strong>Parallel Execution</strong> — Automatic parallelization, no threading headaches<br/>
+✅ <strong>Result Aggregation</strong> — Unified results from all devices<br/>
+✅ <strong>Error Handling</strong> — Failed devices don't stop the whole job<br/>
+✅ <strong>Logging</strong> — Professional logging that works in parallel<br/>
+✅ <strong>Performance</strong> — 5-20x speedup vs. sequential scripts  </p>
+<hr/>
+<h2 id="next-steps">🎯 Next Steps<a class="headerlink" href="#next-steps" title="Anchor link to this section">¶</a></h2>
+<p>You've mastered Nornir fundamentals! Here's your path forward:</p>
+<p><strong>Continue with Intermediate Tutorials:</strong></p>
+<ol>
+<li><strong><a href="../enterprise-config-backup-nornir/">Enterprise Config Backup with Nornir</a></strong> (Recommended Next)</li>
+<li>See this same pattern at production scale</li>
+<li>Database storage for backup metadata</li>
+<li>Change detection between backups</li>
+<li>
+<p>Compliance checking</p>
+</li>
+<li>
+<p><strong><a href="../advanced-nornir-patterns/">Advanced Nornir Patterns</a></strong></p>
+</li>
+<li>Custom inventory sources</li>
+<li>Advanced filtering and task chaining</li>
+<li>Integration with external systems</li>
+<li>
+<p>Performance optimisation techniques</p>
+<p><strong>Learn More About Network Automation Frameworks:</strong></p>
+</li>
+<li>
+<p><strong><a href="../why-nornir/">Why Nornir?</a></strong> — Understand when to use Nornir vs alternatives</p>
+<p><strong>Study Production Code:</strong></p>
+</li>
+<li>
+<p><strong><a href="../../../deep-dives/">Deep Dives</a></strong> — See how production tools apply these patterns</p>
+</li>
+<li><a href="../../../deep-dives/access-switch-audit/">Access Switch Audit</a> — Parallel device collection at scale</li>
+<li>
+<p><a href="../../../deep-dives/cdp-audit/">CDP Network Audit</a> — Multi-threaded network discovery</p>
+<p><strong>Ready to Deploy?</strong></p>
+</li>
+<li>
+<p><strong><a href="../../../../scripts/">Script Library</a></strong> — Deploy production-ready tools built with Nornir</p>
+</li>
+<li><strong><a href="../../../../prime-framework/">PRIME Framework</a></strong> — Structure your automation projects for success</li>
+</ol>
+<hr/>
+<h2 id="production-readiness-checklist">💡 Production Readiness Checklist<a class="headerlink" href="#production-readiness-checklist" title="Anchor link to this section">¶</a></h2>
+<p>Before deploying this in production:</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Test with your actual device inventory</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Verify all devices are reachable</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Check credential storage (use env vars or a vault, avoid plain text)</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Add error notification (email on failure)</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Set up job scheduling (cron or scheduler)</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Validate backup integrity</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Test recovery process</li>
+</ul>
+<p>Tutorial #3 covers these topics!</p>
+<hr/>
+<p><a href="../">← Back to Intermediate Tutorials</a> | <a href="../enterprise-config-backup-nornir/">Continue to Tutorial #3 →</a></p>
+<div class="np-cta-strip">
+<h3>Need help applying this in a live Cisco environment?</h3>
+<p>If you want this pattern implemented, governed, or adapted for your estate, use the contact page to start a discovery conversation or review how Nautomation Prime delivers engagements.</p>
+<div class="np-action-row">
+<p>
+<a class="md-button md-button--primary" href="../../../../contact/">Request Discovery Call</a>
+<a class="md-button" href="../../../../services/">View Services</a>
+<a class="md-button" href="../../../../how-we-work/">How We Work</a>
+</p>
+</div>
+</div>
+<aside class="md-source-file">
+<span class="md-source-file__fact">
+<span class="md-icon" title="Last update">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
+</span>
+<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 11, 2026 11:08:45 UTC">September 11, 2026</span>
+</span>
+</aside>
+</article>
+</div>
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+</div>
+<button class="md-top md-icon" data-md-component="top" hidden="" type="button">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Back to top
+</button>
+</main>
+<footer class="md-footer">
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+<div class="md-copyright__highlight">
+      © 2026 Christopher Davies T/A Nautomation Prime — Not affiliated with Cisco Systems, Inc.<br/> Empowering Network Automation Professionals · Built with Material for MkDocs
+
+    </div>
+</div>
+<div class="md-social">
+<a class="md-social__link" href="https://www.linkedin.com/company/nautomationprime" rel="noopener" target="_blank" title="LinkedIn">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"></path></svg>
+</a>
+<a class="md-social__link" href="https://github.com/Nautomation-Prime" rel="noopener" target="_blank" title="GitHub">
+<svg viewbox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"></path></svg>
+</a>
+<a class="md-social__link" href="mailto:enquiries@nautomationprime.io" rel="noopener" target="_blank" title="Contact Nautomation Prime">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m20 8-8 5-8-5V6l8 5 8-5m0-2H4c-1.11 0-2 .89-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2"></path></svg>
+</a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<div class="md-consent" data-md-component="consent" hidden="" id="__consent">
+<div class="md-consent__overlay"></div>
+<aside class="md-consent__inner">
+<form class="md-consent__form md-grid md-typeset" name="consent">
+<h4>Cookie consent</h4>
+<p>We use cookies to recognize your repeated visits and preferences, as well as to measure the effectiveness of our documentation and whether users find what they're searching for. With your consent, you're helping us to make our documentation better.</p>
+<input class="md-toggle" id="__settings" type="checkbox"/>
+<div class="md-consent__settings">
+<ul class="task-list">
+<li class="task-list-item">
+<label class="task-list-control">
+<input checked="" name="github" type="checkbox"/>
+<span class="task-list-indicator"></span>
+      GitHub
+    </label>
+</li>
+</ul>
+</div>
+<div class="md-consent__controls">
+<button class="md-button md-button--primary">Accept</button>
+<label class="md-button" for="__settings">Manage settings</label>
+</div>
+</form>
+</aside>
+</div>
+<script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script>
+<script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "navigation.indexes", "content.code.copy", "content.code.annotate", "content.tooltips", "search.share", "search.suggest", "search.highlight", "search.stemmer", "announce.dismiss"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+<script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+<script type="module">import mermaid from "https://unpkg.com/mermaid@10.4.0/dist/mermaid.esm.min.mjs";
+window.mermaidConfig = {default: {
+    startOnLoad: false
+}};</script></body>
+</html>
