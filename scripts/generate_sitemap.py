@@ -32,6 +32,20 @@ def should_include(path: Path) -> bool:
     return True
 
 
+def is_redirect_stub(path: Path) -> bool:
+    """True for the meta-refresh pages emitted by mkdocs-redirects.
+
+    These live at the old URL of a moved page and exist only to forward
+    visitors to its new home, so listing them in the sitemap would tell
+    search engines the retired URLs are still canonical content.
+    """
+    try:
+        head = path.read_text(encoding="utf-8", errors="ignore")[:2048].lower()
+    except OSError:
+        return False
+    return 'http-equiv="refresh"' in head or "http-equiv='refresh'" in head
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Generate sitemap.xml from MkDocs site/ output.")
     parser.add_argument("--site-dir", required=True, help="Path to built site directory (e.g. site)")
@@ -49,10 +63,15 @@ def main() -> None:
 
     # Collect URLs
     html_files: list[Path] = []
+    redirect_stubs = 0
     for p in site_dir.rglob("*.html"):
         rel = p.relative_to(site_dir)
-        if should_include(rel):
-            html_files.append(rel)
+        if not should_include(rel):
+            continue
+        if is_redirect_stub(p):
+            redirect_stubs += 1
+            continue
+        html_files.append(rel)
 
     # Deterministic ordering
     html_files.sort(key=lambda p: str(p).lower())
@@ -85,7 +104,7 @@ def main() -> None:
 
     out_path = site_dir / args.output
     out_path.write_text(xml, encoding="utf-8")
-    print(f"Wrote {out_path} ({len(html_files)} URLs)")
+    print(f"Wrote {out_path} ({len(html_files)} URLs, {redirect_stubs} redirect stubs skipped)")
 
 
 if __name__ == "__main__":
