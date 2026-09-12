@@ -15,7 +15,7 @@ The previous page argued that agents need narrow typed tools rather than a gener
 
 If you have production automation, you have most of a tool. What you do not have yet is the boundary around it.
 
-This page uses the [Cisco IOS-XE Compliance Audit](../../deep-dives/cisco-compliance-audit.md) as the worked example, because it is already close: config-driven checks, a structured parser, categorised results. The refactor below applies to any script with a clear job.
+This page uses the [Cisco IOS-XE Compliance Audit](../deep-dives/cisco-compliance-audit.md) as the worked example, because it is already close: config-driven checks, a structured parser, categorised results. The refactor below applies to any script with a clear job.
 
 ---
 

@@ -21,7 +21,7 @@ Automation is a **service**. Services have owners, reviews, and an end.
 
 ## Where This Sits Alongside Delivery
 
-The [PRIME Framework](../../../prime-framework/index.md) describes how automation gets delivered: opportunities identified, workflows redesigned, code built, value measured, the team empowered to own it.
+The [PRIME Framework](../../prime-framework/index.md) describes how automation gets delivered: opportunities identified, workflows redesigned, code built, value measured, the team empowered to own it.
 
 This page describes what happens to it afterwards, and it is deliberately a separate concern. Delivery ends. Operation does not.
 
@@ -47,7 +47,7 @@ Three distinct accountabilities, which may or may not be three different people:
 
 In a small team one engineer may hold all three, and that is fine — provided it is recorded, because the day they leave you need to know there are three things to reassign rather than one.
 
-Recording them is also what makes ["no hero automation"](../../../prime-framework/philosophy.md) enforceable rather than aspirational. A named technical owner who is not the original author is the strongest evidence you have that knowledge actually transferred.
+Recording them is also what makes ["no hero automation"](../../prime-framework/philosophy.md) enforceable rather than aspirational. A named technical owner who is not the original author is the strongest evidence you have that knowledge actually transferred.
 
 ---
 

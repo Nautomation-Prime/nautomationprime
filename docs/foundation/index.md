@@ -18,7 +18,7 @@ The Nautomation Prime Foundation is the free, publicly accessible side of Nautom
 
 <div class="np-action-row" markdown>
 
-[Start Learning](./getting-started.md){.md-button .md-button--primary}
+[Start Learning](./resources.md){.md-button .md-button--primary}
 [Free & Low-Cost Services for Charities](./charity-services.md){.md-button}
 [Browse Tutorials](./tutorials/index.md){.md-button}
 [Read Our Legal Status](../legal/foundation-status.md){.md-button}
@@ -65,15 +65,15 @@ Christopher built Nautomation Prime on the belief that automation should never b
 
 -   ### Learn, free, forever
 
-    Structured tutorials from beginner to expert, production-grade principles, and full deep-dive breakdowns of real automation code.
+    Structured tutorials from beginner to expert, plus the Learning Hub route map that tells you where to start for your current skill level.
 
-    [Go to the Learning Hub](./resources.md)
+    [Go to the Learning Hub](./resources.md) · [Browse Tutorials](./tutorials/index.md)
 
--   ### Getting started
+-   ### Enterprise standards, published in full
 
-    New here? This is the fastest way to find the right starting point for your current skill level.
+    The operating standards we assess against, free and complete: [Production-Grade Network Automation Principles](./production-grade-network-automation-principles/index.md), [Governed AI for Network Operations](./governed-ai-network-operations/index.md), and line-by-line [Deep Dives](./deep-dives/index.md) of real automation code.
 
-    [Start with Getting Started](./getting-started.md)
+    [Read the principles](./production-grade-network-automation-principles/index.md)
 
 -   ### Free & low-cost help for charities
 
@@ -114,7 +114,7 @@ Whether you want to learn network automation for free or you run a UK charity th
 
 <div class="np-action-row" markdown>
 
-[Start Learning](./getting-started.md){.md-button .md-button--primary}
+[Start Learning](../getting-started.md){.md-button .md-button--primary}
 [Apply for Charity Support](./charity-services.md){.md-button}
 [Contact the Foundation](../contact.md){.md-button}
 

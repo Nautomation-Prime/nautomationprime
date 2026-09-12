@@ -543,7 +543,7 @@ The first step is a low-pressure conversation about your operational bottlenecks
 
 **[Services & Pricing](./services.md)** — Investment and deliverables
 
-**[Production-Grade Network Automation Principles](./foundation/tutorials/production-grade-network-automation-principles/index.md)** — Understand the operating patterns PRIME applies in practice
+**[Production-Grade Network Automation Principles](./foundation/production-grade-network-automation-principles/index.md)** — Understand the operating patterns PRIME applies in practice
 
 ---
 

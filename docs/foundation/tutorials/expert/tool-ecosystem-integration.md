@@ -883,7 +883,7 @@ async def test_orchestrator_workflow():
 - [Asyncio for Network Automation](asyncio-network-automation.md) - Async tool integration
 - [Secure Credential Vaulting](secure-credential-vaulting.md) - Tool credentials management
 - [DevOps & Observability](devops-observability-network-automation.md) - Tool observability
-- [Implementation Roadmap (30/60/90 Days)](../production-grade-network-automation-principles/implementation-roadmap-30-60-90-days.md)
+- [Implementation Roadmap (30/60/90 Days)](../../production-grade-network-automation-principles/implementation-roadmap-30-60-90-days.md)
 - [PRIME Framework Overview](../../../prime-framework/index.md)
 
 ---

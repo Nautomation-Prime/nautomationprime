@@ -56,7 +56,7 @@ It is worth being specific about the failure modes, because they are not the one
 | **Deterministic execution** | The model may interpret intent; approved services enforce validation, policy, scope, and execution |
 | **Evidence before opinion** | Operational claims are supported by retrieved evidence, with the source named. No assertion without provenance |
 | **Read-only by default** | Requests are observational unless change intent *and* change authority are both explicit |
-| **Least privilege** | Agents and tools receive only the access their approved use cases require — see [Safety Over Speed](../../../prime-framework/philosophy.md) |
+| **Least privilege** | Agents and tools receive only the access their approved use cases require — see [Safety Over Speed](../../prime-framework/philosophy.md) |
 | **Fail closed** | Ambiguous targets, unsupported actions, and missing controls result in no action, not a best guess |
 | **Transparency** | Responses state sources, scope, uncertainty, validation results, and whether anything changed |
 | **Auditability** | User, conversation, tool invocation, target, approval, and result are correlated into one traceable record |
@@ -100,7 +100,7 @@ Notice what these have in common: the model is doing **retrieval, correlation, a
 
 ## Where This Sits in Your Capability Ladder
 
-Governed AI is levels 4 and 5 of the [Automation Capability Model](../../../prime-framework/empower.md#automation-capability-model). That ordering matters: an organisation without reliable inventory, tested workflows, and audit evidence at levels 2 and 3 does not get to skip to level 4 because the demo was impressive.
+Governed AI is levels 4 and 5 of the [Automation Capability Model](../../prime-framework/empower.md#automation-capability-model). That ordering matters: an organisation without reliable inventory, tested workflows, and audit evidence at levels 2 and 3 does not get to skip to level 4 because the demo was impressive.
 
 If your source of truth is not trusted today, AI will confidently report incorrect things faster than a human could. Fix the foundation first — the [Production-Grade Network Automation Principles](../production-grade-network-automation-principles/index.md) track is that foundation.
 
@@ -117,7 +117,7 @@ If your source of truth is not trusted today, AI will confidently report incorre
 
 ## Getting Help With This
 
-The standard above is free and complete — you do not need us to apply it. If you would rather have the review done with you, and the findings written up in a form your security and change governance teams will accept, that is the [AI Agent Governance Review](../../../services.md#individual-services).
+The standard above is free and complete — you do not need us to apply it. If you would rather have the review done with you, and the findings written up in a form your security and change governance teams will accept, that is the [AI Agent Governance Review](../../services.md#individual-services).
 
 ---
 

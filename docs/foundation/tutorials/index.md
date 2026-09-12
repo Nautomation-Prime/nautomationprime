@@ -71,7 +71,7 @@ Production-grade automation with enterprise patterns and advanced techniques.
 
 ---
 
-### ⚙️ [Production-Grade Network Automation Principles](./production-grade-network-automation-principles/index.md)
+### ⚙️ [Production-Grade Network Automation Principles](../production-grade-network-automation-principles/index.md)
 
 This track focuses on how to run automation safely in enterprise production environments.
 
@@ -79,11 +79,11 @@ This track focuses on how to run automation safely in enterprise production envi
 - **Prerequisites**: Working knowledge of network automation and change control processes
 - **Topics**: Identity validation, pre-flight enforcement, trust boundaries, drift handling, idempotency, blast radius control, safe failure, rollback strategy, workflow phase separation, operator-friendly output, audit evidence, secret hygiene, human approval gates, and deciding when not to automate
 
-**Start Here**: [Production-Grade Network Automation Principles Index](./production-grade-network-automation-principles/index.md)
+**Start Here**: [Production-Grade Network Automation Principles Index](../production-grade-network-automation-principles/index.md)
 
 ---
 
-### 🤖 [Governed AI for Network Operations](./governed-ai-network-operations/index.md)
+### 🤖 [Governed AI for Network Operations](../governed-ai-network-operations/index.md)
 
 This track covers how to let AI help engineers operate a network without giving a language model an execution path to your infrastructure.
 
@@ -91,7 +91,7 @@ This track covers how to let AI help engineers operate a network without giving 
 - **Prerequisites**: Familiarity with the production-grade principles above; a trusted source of truth
 - **Topics**: The interpret-versus-execute boundary, why prompt instructions are not controls, narrow typed tools, AI-0 to AI-4 risk classes, refactoring existing scripts into governed tools, and a ten-question agent review checklist
 
-**Start Here**: [Governed AI for Network Operations](./governed-ai-network-operations/index.md)
+**Start Here**: [Governed AI for Network Operations](../governed-ai-network-operations/index.md)
 
 ---
 
@@ -135,7 +135,7 @@ All tutorials assume you have:
 
 - **[Deep Dives](../deep-dives/index.md)** — In-depth technical analysis of production automation
 - **[Scripts](../../scripts/index.md)** — Ready-to-deploy automation tools
-- **[Getting Started](../getting-started.md)** — New to Nautomation Prime? Start here
+- **[Getting Started](../../getting-started.md)** — New to Nautomation Prime? Start here
 
 ---
 

@@ -9,7 +9,7 @@ This is the main learning hub for Nautomation Prime. Whether you're building you
 
 <div class="np-action-row" markdown>
 
-[Start with Getting Started](getting-started.md){.md-button .md-button--primary}
+[Start with Getting Started](../getting-started.md){.md-button .md-button--primary}
 [Browse Tutorials](tutorials/index.md){.md-button}
 [Study Deep Dives](deep-dives/index.md){.md-button}
 [Explore Scripts](../scripts/index.md){.md-button}
@@ -156,7 +156,7 @@ Understand the philosophy and methodology behind Nautomation Prime.
 
 **Understand our delivery model** → [PRIME Framework](../prime-framework/index.md)
 
-**Start from scratch** → [Start Here](getting-started.md)
+**Start from scratch** → [Start Here](../getting-started.md)
 
 ---
 
@@ -164,7 +164,7 @@ Understand the philosophy and methodology behind Nautomation Prime.
 
 !!! question "Unsure where to begin?"
 
-    - **New to Python?** → [Start Here](getting-started.md) for environment setup
+    - **New to Python?** → [Start Here](../getting-started.md) for environment setup
     - **Know Python, new to networking automation?** → [Beginner tutorials](tutorials/beginner/index.md)
     - **Why Nornir won't work for me?** → It will—see [Why Nornir?](tutorials/intermediate/why-nornir.md)
 
@@ -277,6 +277,6 @@ Each resource is tagged to help you find content that matches your style:
 
 ## Still Need Help?
 
-- **Getting started?** → [Start Here](getting-started.md)
+- **Getting started?** → [Start Here](../getting-started.md)
 - **Have a specific problem?** → Try [Quick Search by Use Case](#quick-search-by-use-case) above
 - **Want to understand our philosophy?** → [About Nautomation Prime](../about.md)

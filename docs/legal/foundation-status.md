@@ -28,7 +28,7 @@ Every commitment, free tutorial, and charity engagement made "by the Foundation"
 - it is regulated by the Charity Commission for England and Wales, OSCR, or the Charity Commission for Northern Ireland; or
 - it is incorporated at Companies House as a CIC or any other company type.
 
-Section 5 of the Charities Act 2011 makes it an offence to describe an institution as a registered charity when it is not one. We take that seriously, which is why this page exists and why the Foundation's own pages carry the same disclosure.
+Presenting an organisation as a registered charity when it is not one is a serious matter. Depending on the circumstances it can amount to misrepresentation or fraud, and it is capable of being a misleading commercial practice under UK consumer protection law. The mirror-image duty in section 39 of the Charities Act 2011 — which requires most *registered* charities to state that status on their documents — exists precisely so the public can tell the difference. We take that distinction seriously, which is why this page exists and why the Foundation's own pages carry the same disclosure.
 
 ## 3. No public fundraising by the Foundation
 

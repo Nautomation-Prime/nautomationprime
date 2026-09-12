@@ -200,7 +200,7 @@ Whether you're assessing automation opportunities, rebuilding inherited scripts,
 
 [Request Discovery Call](./contact.md){.md-button .md-button--primary}
 [Compare Services](./services.md){.md-button}
-[Start with Getting Started](./foundation/getting-started.md){.md-button}
+[Start with Getting Started](./getting-started.md){.md-button}
 
 </div>
 

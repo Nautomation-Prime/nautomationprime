@@ -473,8 +473,8 @@ This review establishes whether an agent, built or planned, can be governed.
 
 **Deliverables:**
 
-- Findings against the published [Agent Review Checklist](./foundation/tutorials/governed-ai-network-operations/agent-review-checklist.md), with evidence
-- An [AI risk class](./foundation/tutorials/governed-ai-network-operations/ai-risk-classification.md) for each agent, and the controls that class requires
+- Findings against the published [Agent Review Checklist](./foundation/governed-ai-network-operations/agent-review-checklist.md), with evidence
+- An [AI risk class](./foundation/governed-ai-network-operations/ai-risk-classification.md) for each agent, and the controls that class requires
 - Exception register for gaps you choose to accept, with owners and expiry dates
 - Prioritised remediation plan, sequenced by risk rather than by effort
 - Executive summary suitable for security and change governance review
@@ -483,9 +483,9 @@ This review establishes whether an agent, built or planned, can be governed.
 **Investment:** £3,500 - £6,500
 
 !!! tip "The method is already published"
-    We do not ask you to buy the framework. The [Governed AI for Network Operations](./foundation/tutorials/governed-ai-network-operations/index.md) track sets out the standard we assess against, in full and for free. You are engaging us to run it against your environment, argue the hard cases, and produce evidence your security team will accept.
+    We do not ask you to buy the framework. The [Governed AI for Network Operations](./foundation/governed-ai-network-operations/index.md) track sets out the standard we assess against, in full and for free. You are engaging us to run it against your environment, argue the hard cases, and produce evidence your security team will accept.
 
-**[Read the standard first →](./foundation/tutorials/governed-ai-network-operations/index.md)**
+**[Read the standard first →](./foundation/governed-ai-network-operations/index.md)**
 
 ---
 
@@ -1275,7 +1275,7 @@ As revenue scales, a percentage is allocated to vetted charities reviewed for tr
 
 ### Educational Resources
 
-**[Production-Grade Principles](./foundation/tutorials/production-grade-network-automation-principles/index.md)** — Technical guidance and enterprise operating patterns
+**[Production-Grade Principles](./foundation/production-grade-network-automation-principles/index.md)** — Technical guidance and enterprise operating patterns
 
 **[Tutorials & Guides](./foundation/tutorials/index.md)** — Hands-on Python automation training
 
