@@ -142,7 +142,7 @@ Christopher specialises in enterprise Cisco automation, with deep expertise in P
 
 **[Read more about Christopher's background and story →](./founder.md)**
 
-**Trading Status:** Christopher Davies trading as (T/A) Nautomation Prime
+**Trading Status:** Christopher Davies, intending to trade as (T/A) Nautomation Prime. **Not yet trading** — this site is being built ahead of launch. See [Foundation Legal Status & Governance](./legal/foundation-status.md) for the current position.
 
 [Connect on LinkedIn](https://www.linkedin.com/company/nautomationprime){ .md-button }
 

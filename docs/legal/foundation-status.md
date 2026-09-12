@@ -2,22 +2,24 @@
 
 ## Policy Review Status
 
-- **Policy version:** 1.0
+- **Policy version:** 1.1
 - **Policy owner:** Christopher Davies (Founder, Nautomation Prime)
-- **Last reviewed:** 11 September 2026
+- **Last reviewed:** 12 September 2026
 - **Next scheduled review:** March 2027
-- **Current status:** Active — Foundation is unregistered; registration as a charity or CIC is a stated future intention, not a current fact
+- **Current status:** Pre-launch — Nautomation Prime is not yet trading. The Foundation is unregistered; registration as a charity or CIC is a stated future intention, not a current fact. The use of "Foundation" in the name is subject to the outstanding check described in section 4.
 
 ---
 
 ## 1. What the Nautomation Prime Foundation is today
 
-The "Nautomation Prime Foundation" is a trading name and a section of this website. It is **not** a registered charity, not a registered Community Interest Company (CIC), and not a separate legal entity of any kind. It is operated directly by:
+The "Nautomation Prime Foundation" is a name used for a section of this website. It is **not** a registered charity, not a registered Community Interest Company (CIC), and not a separate legal entity of any kind. It is operated directly by:
 
-**Christopher Davies**, trading as **Nautomation Prime**
+**Christopher Davies**
 9 The Sleeve, Leek, ST13 8HR, Staffordshire, England, United Kingdom
 
-Every commitment, free tutorial, and charity engagement made "by the Foundation" is legally a commitment made by Christopher Davies personally as a sole trader. There is no independent trustee board, no separate charitable fund, and no legal separation between "Nautomation Prime" and "Nautomation Prime Foundation" at this time.
+**Nautomation Prime is not yet trading.** This site is being built ahead of launch. The free educational content published here is available to read now, but no commercial services are currently being supplied, no engagements are being taken on, and the charity-services offer described on the [Charity Services](../foundation/charity-services.md) page is not yet open — it sets out the intended terms so they can be read and challenged before it opens, not an offer capable of acceptance today.
+
+Once trading begins, every commitment, free tutorial, and charity engagement made "by the Foundation" will legally be a commitment made by Christopher Davies personally as a sole trader. There is no independent trustee board, no separate charitable fund, and no legal separation between "Nautomation Prime" and "Nautomation Prime Foundation".
 
 ## 2. Why we use the word "Foundation" now, and what it does not mean
 
@@ -40,15 +42,29 @@ This is separate from the [Giving With Integrity](../charity.md) policy, under w
 
 Christopher Davies intends to formalise the Nautomation Prime Foundation as a registered charity or Community Interest Company once it reaches a scale that justifies the ongoing governance, reporting, and accounting obligations that come with either structure. Before any such registration is announced on this site, it will have already been completed and confirmed by the relevant regulator (the Charity Commission, OSCR, CCNI, or Companies House, as applicable) — this page and the Foundation pages will not describe registration as complete, in progress, or imminent until that is true.
 
-As part of that process, and before adopting "Foundation" (or any other potentially sensitive word) in a registered company or charity name, Christopher Davies will check the name against Companies House's rules on sensitive words and expressions, and against the Charity Commission's naming guidance, and will seek professional advice on the correct structure. Nothing on this page should be relied on as confirmation that any particular name or structure has already been cleared for registration.
+### "Foundation" is a sensitive word, and that check is outstanding
+
+"Foundation" appears on the list of sensitive words and expressions maintained by Companies House under the Company, Limited Liability Partnership and Business (Names and Trading Disclosures) Regulations 2015. The published guidance for that entry states that to use the word, a company should normally be limited by guarantee, should have a pool of money or a regular source of income to promote its objects, and should include a non-profit distribution clause in its articles of association.
+
+That regime is not limited to registered company names. Section 1194(1) of the Companies Act 2006 provides that a person must not, without the approval of the Secretary of State, **carry on business** in the United Kingdom under a name that includes a specified word or expression. Contravention is a criminal offence under section 1194(3).
+
+Nautomation Prime is not yet trading, so that prohibition is not currently engaged. But it would be engaged by trading under a name containing "Foundation", and this site takes the position that the question must be resolved *before* trading begins rather than after. Christopher Davies is confirming the position directly with Companies House. Depending on the answer, one of the following will happen before any commercial activity starts under this name:
+
+1. Approval is obtained for the use of "Foundation" in the business name; or
+2. The Foundation is incorporated in a form that satisfies the guidance — a company limited by guarantee with a non-profit distribution clause — which is in any case the direction of travel described above; or
+3. The name is changed to remove the sensitive word, and this site is updated accordingly.
+
+Until one of those is settled, "Foundation" is used on this site as a descriptive label for a body of free educational content, not as a trading name under which business is being carried on. If the outcome requires a change, it will be made and recorded here.
+
+The Charity Commission separately operates its own naming rules and can require a change of name where one is misleading. Nothing on this page should be relied on as confirmation that any particular name or structure has already been cleared for registration or for use.
 
 ## 5. Liability for Foundation activity
 
 Because the Foundation is not a separate legal entity, all liability for Foundation activity sits with Christopher Davies personally, on the same basis as the rest of Nautomation Prime's work:
 
 - Free educational content (tutorials, deep dives, guides) is provided on an "AS IS" basis with no warranty, exactly as set out in the site [Disclaimer](./disclaimer.md) and [Terms of Use](./terms-of-use.md).
-- Charity engagements delivered under the [Charity Services](../foundation/charity-services.md) offer are subject to the specific liability cap and terms set out on that page, which do not exclude liability for death or personal injury caused by negligence, fraud, or anything else that cannot lawfully be excluded under the Unfair Contract Terms Act 1977.
-- No professional indemnity or public liability insurance level is represented on this site. Charities and individuals should ask about current insurance arrangements before relying on any free or paid engagement for critical infrastructure.
+- Charity engagements delivered under the [Charity Services](../foundation/charity-services.md) offer will be subject to the specific liability cap and terms set out on that page, which do not exclude liability for death or personal injury caused by negligence, fraud, or anything else that cannot lawfully be excluded under the Unfair Contract Terms Act 1977. Any cap on liability for negligence is in any event effective only so far as it satisfies the requirement of reasonableness in section 11 of that Act — a cap stated on this site is what is proposed, not a guarantee of what a court would enforce.
+- No professional indemnity or public liability insurance level is represented on this site, and none should be assumed. The insurance position will be settled before trading begins, and stated here. Charities and individuals should ask about current insurance arrangements before relying on any free or paid engagement for critical infrastructure.
 
 ## 6. Data protection
 

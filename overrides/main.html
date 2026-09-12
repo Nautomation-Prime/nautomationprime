@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{#-
+  Site-wide pre-launch notice.
+
+  Nautomation Prime is not yet trading. Much of this site is written in the
+  present tense because it describes how the business will operate once it
+  launches, so this banner states the current position on every page rather
+  than relying on each page to say so.
+
+  Remove this block on the day trading starts, and update
+  docs/legal/foundation-status.md at the same time.
+-#}
+{% block announce %}
+  <strong>Nautomation Prime is not yet trading.</strong>
+  This site is being built ahead of launch &mdash; the free learning content is
+  live to read, but services are not yet being supplied and no engagement or
+  charity application can be accepted today.
+  <a href="{{ base_url }}/legal/foundation-status/">Read the current legal status</a>.
+{% endblock %}

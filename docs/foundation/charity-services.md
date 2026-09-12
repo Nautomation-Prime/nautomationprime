@@ -14,12 +14,12 @@ tags:
 
 ## Free & Low-Cost Services for Charities
 
-Through the Nautomation Prime Foundation, Christopher Davies offers a limited amount of free and heavily discounted networking engineering time to registered UK charities and Community Interest Companies (CICs) each year. This covers both hands-on Cisco and general networking engineering (design, troubleshooting, configuration, upgrades) and Python-based Cisco network automation — whichever your charity actually needs.
+Through the Nautomation Prime Foundation, Christopher Davies will offer a limited amount of free and heavily discounted networking engineering time to registered UK charities and Community Interest Companies (CICs) each year. This will cover both hands-on Cisco and general networking engineering (design, troubleshooting, configuration, upgrades) and Python-based Cisco network automation — whichever your charity actually needs.
 
 <div class="np-action-row" markdown>
 
 [Check Eligibility](#eligibility){.md-button .md-button--primary}
-[Apply for Support](mailto:enquiries@nautomationprime.io?subject=Charity%20Support%20Application){.md-button}
+[Register Interest](mailto:enquiries@nautomationprime.io?subject=Charity%20Support%20-%20Register%20Interest){.md-button}
 [Read the Legal Terms](#legal-terms-and-limits-of-this-offer){.md-button}
 
 </div>
@@ -32,8 +32,11 @@ Through the Nautomation Prime Foundation, Christopher Davies offers a limited am
 
 </div>
 
+!!! info "Not open yet — this is a pre-launch page"
+    Nautomation Prime is not yet trading, and this offer is **not currently open**. Nothing on this page is an offer capable of acceptance, and no application can be accepted today. It is published in advance so the terms, eligibility rules, and limits can be read and challenged before the offer opens. You are welcome to register interest now and you will be contacted when it does. See [Foundation Legal Status & Governance](../legal/foundation-status.md) for the current position.
+
 !!! warning "This is not a registered charity giving scheme"
-    This offer is made directly by Christopher Davies, trading as Nautomation Prime, out of his own working capacity. It is not made by, or on behalf of, a registered charity. See [Foundation Legal Status & Governance](../legal/foundation-status.md) for the full legal position.
+    This offer will be made directly by Christopher Davies out of his own working capacity. It is not made by, or on behalf of, a registered charity, and no charitable tax treatment or Gift Aid applies to it. See [Foundation Legal Status & Governance](../legal/foundation-status.md) for the full legal position.
 
 ---
 
@@ -76,15 +79,17 @@ To be considered, an organisation must currently meet all of the following:
 3. **For any engagement that changes live configuration** (as opposed to advice-only review), be able to take a current backup or export of anything that will be touched, or agree to Nautomation Prime taking one as the first step, before that work begins.
 4. **Confirm any sector-specific requirements up front** — for example, if your charity works with children or vulnerable adults and requires a DBS check, safeguarding declaration, or specific vetting before anyone accesses your systems, tell us in your application so it can be arranged or, if it cannot be met, so we can say so early rather than after starting.
 
-Applications are reviewed in the order received. Preference may be given to smaller charities, to charities local to Staffordshire and the wider Midlands, and to requests with a clearly scoped, achievable ask — but every eligible application is considered, and eligibility does not depend on a charity's cause, beneficiaries, or beliefs, other than the practical requirements above.
+Once the offer opens, applications will be reviewed in the order received. Preference may be given to smaller charities, to charities local to Staffordshire and the wider Midlands, and to requests with a clearly scoped, achievable ask — but every eligible application is considered, and eligibility does not depend on a charity's cause, beneficiaries, or beliefs, other than the practical requirements above.
 
 ---
 
-## How to apply
+## How to apply, once this opens
 
-1. Email **[enquiries@nautomationprime.io](mailto:enquiries@nautomationprime.io?subject=Charity%20Support%20Application)** with the subject "Charity Support Application".
+The offer is not open yet, so step 1 below is currently "register interest" rather than "apply". You will be told when applications open, and the process will then be:
+
+1. Email **[enquiries@nautomationprime.io](mailto:enquiries@nautomationprime.io?subject=Charity%20Support%20-%20Register%20Interest)** with the subject "Charity Support — Register Interest".
 2. Include: your charity/CIC name and registration number, a link to your entry on the relevant public register, a short description of the problem you want help with (networking engineering, Python automation, or both), and the name and role of your IT/network contact.
-3. Christopher will reply, on a best-efforts basis, to confirm whether the request fits current capacity and what would be involved.
+3. Christopher will reply, on a best-efforts basis, to confirm whether the request is likely to fit capacity when the offer opens and what would be involved.
 4. If it goes ahead, the work is set out in a short written scope agreement (email is fine) covering what will and won't be done, timescales, and the terms below, before anything is changed on your network.
 
 ---
@@ -94,9 +99,9 @@ Applications are reviewed in the order received. Preference may be given to smal
 This section applies specifically to charity-services engagements delivered under this page, in addition to the site-wide [Terms of Use](../legal/terms-of-use.md) and [Disclaimer](../legal/disclaimer.md).
 
 - **Basis of work.** Work is carried out with reasonable skill and care, strictly within the scope agreed in writing before work starts. Nautomation Prime does not warrant that any script, configuration, or advice is fit for a purpose beyond that agreed scope.
-- **Liability cap.** For any free engagement delivered under this offer, Christopher Davies' total liability to the charity, however arising, is capped at **£0** beyond re-performing or correcting the specific work delivered — reflecting that no fee is charged. For discounted paid engagements, liability is capped at the **total fees paid** for that engagement, unless a different figure is agreed in writing beforehand.
-- **What the cap does not remove.** Nothing in this offer excludes or limits liability for death or personal injury caused by negligence, for fraud or fraudulent misrepresentation, or for any other liability that cannot lawfully be excluded or limited under English law, including under the Unfair Contract Terms Act 1977.
-- **No professional indemnity insurance is assumed.** Charities should ask about current insurance arrangements before agreeing to any engagement involving production infrastructure, and should not proceed with changes to critical systems without their own backups and change-approval process in place.
+- **Liability cap.** For any free engagement delivered under this offer, the primary remedy is re-performing or correcting the specific work delivered. Beyond that, Christopher Davies' total liability to the charity is proposed to be capped at a figure confirmed in the written scope agreement for that engagement, reflecting that no fee is charged. For discounted paid engagements, liability is capped at the **total fees paid** for that engagement, unless a different figure is agreed in writing beforehand. The final figure for each engagement is set out in that engagement's scope agreement before work starts.
+- **Limits on the cap itself.** Nothing in this offer excludes or limits liability for death or personal injury caused by negligence, for fraud or fraudulent misrepresentation, or for any other liability that cannot lawfully be excluded or limited under English law. Under the Unfair Contract Terms Act 1977, a term restricting liability for negligence is effective only so far as it satisfies the requirement of reasonableness in section 11 of that Act. A cap agreed under this offer is therefore what is proposed and agreed between the parties, not a representation that a court would enforce it in every circumstance.
+- **Insurance.** No professional indemnity or public liability insurance level is represented on this page, and none should be assumed. The insurance position will be settled before this offer opens and stated here at that point. Charities should confirm current insurance arrangements before agreeing to any engagement involving production infrastructure, and should not proceed with changes to critical systems without their own backups and change-approval process in place.
 - **Your responsibilities.** The named IT/network contact remains responsible for authorising changes, retaining backups, and testing outcomes in the charity's own environment. Charities remain fully responsible for their own regulatory, safeguarding, and data protection obligations; Nautomation Prime is a technical services provider, not a data controller or processor for your organisation's own systems unless a separate written agreement says otherwise.
 - **Data we collect from applicants.** Application details (organisation name, registration number, contact details, description of need) are handled exactly as described in the [Privacy Policy](../legal/privacy-policy.md) — used only to assess and deliver the request, not for marketing, and not shared with third parties.
 - **Right to decline or withdraw.** Christopher may decline an application, or pause this offer entirely, at any time and without giving a reason — most commonly due to capacity, but also where a request falls outside what can be safely or lawfully delivered by a single practitioner.
@@ -106,13 +111,13 @@ This section applies specifically to charity-services engagements delivered unde
 
 <div class="np-cta-strip" markdown>
 
-### Ready to apply, or need something different?
+### Want to register interest, or need something different?
 
 If your organisation isn't a registered charity or CIC but still needs low-cost help, see the [SMB packages](../smb/index.md) or [Services overview](../services.md) instead — or [get in touch](../contact.md) and ask.
 
 <div class="np-action-row" markdown>
 
-[Apply for Charity Support](mailto:enquiries@nautomationprime.io?subject=Charity%20Support%20Application){.md-button .md-button--primary}
+[Register Interest](mailto:enquiries@nautomationprime.io?subject=Charity%20Support%20-%20Register%20Interest){.md-button .md-button--primary}
 [Compare SMB Packages](../smb/index.md){.md-button}
 [Contact Nautomation Prime](../contact.md){.md-button}
 

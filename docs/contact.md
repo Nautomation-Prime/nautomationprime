@@ -58,9 +58,9 @@ Use this page if you want to discuss an automation challenge, request a discover
 
 -   ### Charity support
 
-    Best if you run a registered UK charity or CIC and want to apply for free or low-cost Cisco and general networking engineering, infrastructure advice, or Python-based automation through the Nautomation Prime Foundation.
+    Best if you run a registered UK charity or CIC and want free or low-cost Cisco and general networking engineering, infrastructure advice, or Python-based automation through the Nautomation Prime Foundation. The offer is not open yet &mdash; register interest and you will be contacted when it is.
 
-    [Apply for charity support](mailto:enquiries@nautomationprime.io?subject=Charity%20Support%20Application)
+    [Register interest in charity support](mailto:enquiries@nautomationprime.io?subject=Charity%20Support%20-%20Register%20Interest)
 
 -   ### LinkedIn
 

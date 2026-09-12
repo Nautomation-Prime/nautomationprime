@@ -33,7 +33,7 @@ The Nautomation Prime Foundation is the free, publicly accessible side of Nautom
 
 </div>
 
-> **Legal status note:** The Nautomation Prime Foundation is **not currently a registered charity or Community Interest Company**. It is an initiative operated directly by Christopher Davies, trading as Nautomation Prime, with the stated intention of registering it as a charity or CIC as it grows. It does not solicit public donations for itself. Full detail is published on the [Foundation Legal Status & Governance](../legal/foundation-status.md) page, and nothing on this site should be read as a claim of registered charitable status.
+> **Legal status note:** Nautomation Prime is **not yet trading**, and the charity-services offer below is **not yet open**. The Nautomation Prime Foundation is **not a registered charity or Community Interest Company**. It is an initiative operated directly by Christopher Davies, with the stated intention of registering it as a charity or CIC as it grows. It does not solicit public donations for itself. "Foundation" is a sensitive word under the Companies House naming rules, and its use here is subject to an outstanding check described on the [Foundation Legal Status & Governance](../legal/foundation-status.md) page. Nothing on this site should be read as a claim of registered charitable status.
 
 ---
 
@@ -115,7 +115,7 @@ Whether you want to learn network automation for free or you run a UK charity th
 <div class="np-action-row" markdown>
 
 [Start Learning](../getting-started.md){.md-button .md-button--primary}
-[Apply for Charity Support](./charity-services.md){.md-button}
+[Charity & CIC Support](./charity-services.md){.md-button}
 [Contact the Foundation](../contact.md){.md-button}
 
 </div>
